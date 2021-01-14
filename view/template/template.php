@@ -10,7 +10,6 @@
 </head>
 
 <body>
-    <h1>Test</h1>
     <?php require 'header.php' ?>
     <?= $content ?>
     <?php require 'footer.php' ?>
