@@ -6,3 +6,5 @@
  * remplit ce formulaire, les données sont insérées dans la base de
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
+echo 'inscription';
+

@@ -5,7 +5,5 @@
  * associés et la possibilité d’en ajouter un nouveau. Il faut utiliser l’argument
  * GET “id” afin de sélectionner l’article souhaité.
  * ex : https://localhost/blog/article.php/?id=1
- * 
- * /
-
-
+ * */
+ echo 'article';
