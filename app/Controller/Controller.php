@@ -34,12 +34,4 @@ class Controller
         return strtolower(str_replace('Controller', '', $controllerName));
     }
 
-    public function createarticle_render()
-    {
-        $viewPath = $this->viewPath;
-        ob_start();
-        require $viewPath .'/creer-article.php';
-        $content = ob_get_clean();
-        require $viewPath .'/template/template.php';
-    }
 }

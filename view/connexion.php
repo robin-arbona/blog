@@ -6,4 +6,16 @@
  * informations, alors l’utilisateur devient connecté et une (ou plusieurs)
  * variables de session sont créées.
  */
-echo 'connexion';
+?>
+
+<form method="post">
+    <div class="mb-3">
+        <label for="login" class="form-label">Login</label>
+        <input type="text" class="form-control" id="login">
+    </div>
+    <div class="mb-3">
+        <label for="InputPassword" class="form-label">Password</label>
+        <input name="password" type="password" class="form-control" id="InputPassword">
+    </div>
+    <button name="sign-in" type="submit" class="btn btn-primary">Sign in</button>
+</form>
