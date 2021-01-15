@@ -33,4 +33,6 @@ class Controller
         $controllerName = end($parts);
         return strtolower(str_replace('Controller', '', $controllerName));
     }
+
+
 }
