@@ -6,3 +6,4 @@
  * (modification et suppression d’articles, création/modification et suppression
  * de catégories, d’utilisateurs, droits...)
  */
+echo 'admin';

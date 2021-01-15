@@ -1,6 +1,5 @@
 <?php
 
-use App\Controller\Controller;
 use App\Controller\IndexController;
 use App\Controller\AdminController;
 use App\Controller\InscriptionController;

@@ -10,7 +10,8 @@
  * l’argument GET “categorie” qui utilise les id des categories.
  * ex : https://localhost/blog/articles.php/?categorie=1&start=10 affiche les
  * articles 11 à 15 ayant comme id_categorie 1).
- * /
- 
+ */
+
+echo 'articles';
 
 
