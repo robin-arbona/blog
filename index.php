@@ -28,23 +28,23 @@ if (!empty($_GET) && isset($_GET['page'])) {
         // Controller Admin
         $adminpage = new AdminController;
         $adminpage->render();
-    }elseif ($page == 'inscription'){
+    } elseif ($page == 'inscription') {
         // Controller Inscription
         $inscriptionpage = new InscriptionController;
         $inscriptionpage->render();
-    }elseif ($page == 'connexion'){
+    } elseif ($page == 'connexion') {
         // Controller Connexion
         $connexionpage = new ConnexionController;
         $connexionpage->render();
-    }elseif ($page == 'article'){
+    } elseif ($page == 'article') {
         // Controller Article
         $articlepage = new ArticleController;
         $articlepage->render();
-    }elseif ($page == 'creer-article'){
+    } elseif ($page == 'creer-article') {
         // Controller Creer-Article
         $creerarticlepage = new CreerarticleController;
         $creerarticlepage->createarticle_render();
-    }elseif ($page == 'profil'){
+    } elseif ($page == 'profil') {
         // Controller Profil
         $profilpage = new ProfilController;
         $profilpage->render();
