@@ -5,6 +5,7 @@ use App\Controller\AdminController;
 use App\Controller\InscriptionController;
 use App\Controller\ConnexionController;
 use App\Controller\ArticleController;
+use App\Controller\ArticlesController;
 use App\Controller\CreerarticleController;
 use App\Controller\ProfilController;
 
@@ -22,31 +23,33 @@ if (!empty($_GET) && isset($_GET['page'])) {
     $page = $_GET['page'];
     if ($page == 'index') {
         // Controller Index
-        $homepage = new IndexController;
-        $homepage->render();
+        new IndexController;
     } elseif ($page == 'admin') {
         // Controller Admin
         $adminpage = new AdminController;
-        $adminpage->render();
     } elseif ($page == 'inscription') {
         // Controller Inscription
         $inscriptionpage = new InscriptionController;
-        $inscriptionpage->render();
     } elseif ($page == 'connexion') {
         // Controller Connexion
         $connexionpage = new ConnexionController;
-        $connexionpage->render();
     } elseif ($page == 'article') {
         // Controller Article
-        $articlepage = new ArticleController;
-        $articlepage->render();
+        if (isset($_GET['id']) && ((int) $_GET['id'] > 0)) {
+            $articlepage = new ArticleController($_GET['id']);
+        } else {
+            throw new Exception('Article id has to be a positif integrer, id provided' . $_GET['id']);
+        }
+    } elseif ($page == 'articles') {
+        // Controller Articles
+        new ArticlesController;
     } elseif ($page == 'creer-article') {
         // Controller Creer-Article
         $creerarticlepage = new CreerarticleController;
-        $creerarticlepage->createarticle_render();
     } elseif ($page == 'profil') {
         // Controller Profil
         $profilpage = new ProfilController;
-        $profilpage->render();
     }
+} else {
+    new IndexController;
 }

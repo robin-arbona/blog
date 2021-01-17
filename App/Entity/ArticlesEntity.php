@@ -4,22 +4,25 @@ namespace App\Entity;
 
 class ArticlesEntity extends Entity
 {
+    /**
+     * Return an extract of the first 25 words of article content
+     * @return string 25 first words of article ended by ...
+     */
     public function getExtract()
     {
         $article = $this->article;
         if ($article == NULL) {
-            return 'No abstract';
+            return 'No extract';
         }
-        $abstract = '';
+        $extract = '';
         $articleTab = explode(' ', $article);
         for ($i = 0; $i < 25; $i++) {
             if (!isset($articleTab[$i])) {
                 break;
             }
-            $abstract .= $articleTab[$i];
-            $abstract .= ' ';
+            $extract .= $articleTab[$i] . ' ';
         }
-        $abstract .= ' ...';
-        return $abstract;
+        $extract .= ' ...';
+        return $extract;
     }
 }

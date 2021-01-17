@@ -1,0 +1,9 @@
+.centered-and-cropped { 
+    object-fit: cover;
+    width: 20rem;
+    height: 20rem;
+}
+.no-text-decoration {
+    text-decoration: none !important;
+    color: black !important;
+}
