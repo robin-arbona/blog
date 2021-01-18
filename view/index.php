@@ -22,7 +22,7 @@ require_once('template/header.php');
         <?php
         foreach ($articles as $article) { ?>
             <div class="col row justify-content-center my-5">
-                <a href="article.php/?id=<?= $article->id ?>" class="card m-3 no-text-decoration" style="width: 20rem;">
+                <a href="article.php?id=<?= $article->id ?>" class="card m-3 no-text-decoration" style="width: 20rem;">
                     <img class="centered-and-cropped" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" class="card-img-top" alt="...">
 
                     <div class="card-body">

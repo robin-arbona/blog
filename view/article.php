@@ -27,10 +27,9 @@ require_once('template/header.php');
 ?>
 
 <div class="container">
-    <h1 class="display-1 mt-5 mb-0">Welcome in my blog,</h1>
-    <h2 class="display-4 mt-0">Subtitle goes here.</h2>
-    <?php var_dump($article); ?>
-
+    <img class="img-fluid" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" alt="...">
+    <h1 class="display-1 mt-5 mb-0"><?= $article->title; ?></h1>
+    <p><?= $article->article; ?></p>
 
 </div>
 <?php
