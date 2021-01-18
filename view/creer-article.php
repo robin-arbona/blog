@@ -24,6 +24,7 @@ require_once('template/header.php');
     </div>
     <div class="form-group">
         <label for="article">
+            <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" aria-label=".form-control-lg example">
             <textarea class="form-control" id="article" name="article" rows="3"></textarea>
         </label>
     </div>

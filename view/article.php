@@ -7,7 +7,3 @@
  * GET “id” afin de sélectionner l’article souhaité.
  * ex : https://localhost/blog/article.php/?id=1
  * */
-
-require_once('template/header.php');
-
-require_once('template/footer.php');

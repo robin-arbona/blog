@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Entity;
 
-class ArticlesEntity extends Entity
+class ArticlesEntity
 {
     /**
      * Return an extract of the first 25 words of article content
