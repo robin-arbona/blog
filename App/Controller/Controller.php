@@ -42,4 +42,10 @@ class Controller
         $content = ob_get_clean();
         require $viewPath .'/template/template.php';
     }
+
+    public function create_article($article, $id_utilisateur, $id_categorie) :void
+    {
+        
+        
+    }
 }

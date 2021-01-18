@@ -14,7 +14,7 @@ function autoloader($class)
     $path = str_replace('\\', '/', $class) . '.php';
     require $path;
 }
-spl_autoload_register('autoloader');
+spl_autoload_register('autoloader'); //Charge tout les class automatiquement quand elle son instancié
 
 
 // Rooter
