@@ -39,7 +39,7 @@ class Article
     {
    
        $SQL = ("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
-       $this->link->prepare($SQL)->execute([$title,$article,$id_utilisateur,$id_categorie,$date]);
+       prepare($SQL)->execute([$title,$article,$id_utilisateur,$id_categorie,$date]);
        
     }
 
