@@ -6,6 +6,7 @@
  * informations, alors l’utilisateur devient connecté et une (ou plusieurs)
  * variables de session sont créées.
  */
+
 ?>
 
 <form method="post">

@@ -6,10 +6,12 @@
  * remplit ce formulaire, les données sont insérées dans la base de
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
-
+require 'template/header.php';
+require '../classes/c_inscription.php';
+$user = new Inscription();
+$user->new_user();
 ?>
-
-<form method="post" action="index.php?page=inscription">
+<form method="post" ">
     <div class="mb-3">
         <label for="login" class="form-label">Login</label>
         <input name="login" type="text" class="form-control" id="login">
@@ -37,3 +39,5 @@
     }
     ?>
 </form>
+
+<?php require 'template/header.php';
