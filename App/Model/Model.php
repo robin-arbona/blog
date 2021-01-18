@@ -4,6 +4,9 @@ namespace App\Model;
 
 use PDO;
 use App\Database;
+use App\Controller\InscriptionController;
+
+
 
 class Model
 {
@@ -48,4 +51,6 @@ class Model
         $controllerName = end($parts);
         return strtolower(str_replace('Model', '', $controllerName));
     }
+
 }
+
