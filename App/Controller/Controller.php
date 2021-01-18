@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use PDO;
+use App\Database;
+
 /**
  * Controller parent classes
  */
@@ -54,4 +57,5 @@ class Controller
         $controllerName = end($parts);
         return strtolower(str_replace('Controller', '', $controllerName));
     }
+
 }

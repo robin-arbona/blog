@@ -13,6 +13,7 @@ use App\Controller\ProfilController;
 function autoloader($class)
 {
     $path = str_replace('\\', '/', $class) . '.php';
+    var_dump($path);
     require $path;
 }
 spl_autoload_register('autoloader'); //Charge tout les class automatiquement quand elle son instancié
@@ -53,3 +54,4 @@ if (!empty($_GET) && isset($_GET['page'])) {
 } else {
     new IndexController;
 }
+

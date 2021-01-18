@@ -12,5 +12,5 @@ class CreerarticleController extends Controller
     {
         $this->render(NULL, 'creer-article');
     }
-}
 
+}   

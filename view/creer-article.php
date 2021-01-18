@@ -2,6 +2,7 @@
 
 use App\Controller\CreerarticleController;
 
+
 /** - Une page permettant de créer des articles (creer-article.php) :
  * Cette page possède un formulaire permettant aux modérateurs et
  * administrateurs de créer de nouveaux articles. Le formulaire contient donc
@@ -9,5 +10,4 @@ use App\Controller\CreerarticleController;
  * en base de données et un bouton submit.
  */
 echo 'creer-article';
-$object = new CreerarticleController;
-$object->test();
+
