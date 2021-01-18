@@ -5,6 +5,7 @@
  *  pages du blog.
  */
 ?>
+
 <footer>
     <nav class="navbar navbar-expand-lg bg-dark justify-content-around " >
        <ul class="nav flex-column">
@@ -36,3 +37,7 @@
         </ul>
     </nav>
 </footer>
+
+</body>
+
+</html>
