@@ -29,7 +29,7 @@
         <label for="email2" class="form-label">Please confirm your email address</label>
         <input name="email2" type="email" class="form-control" id="email2">
     </div>
-    <button name="sign-up" type="submit" class="btn btn-primary">Sign up
+    <button name="sign-up" type="submit" class="btn btn-primary">Sign up</button>
         <?php
         if (isset($error)) {
             echo '<span class="badge badge-danger">' . $error . '</span>';

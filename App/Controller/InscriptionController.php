@@ -8,12 +8,13 @@ use App\Database;
 
 class InscriptionController extends Controller
 {
-    public function new_user($password,$login)
+    public function new_user($password,$login,$email)
     {
         $db = Database::getDb();
-        $stmt=$db->prepare("INSERT INTO utilisateurs(login, password) VALUES (?,?)");
-        $stmt->bindValue(1,$login);
-        $stmt->bindvalue(2,$password);
+        $stmt=$db->prepare("INSERT INTO utilisateurs(login, password,email) VALUES (:login,:password,:email)");
+        $stmt->bindValue(login,$login);
+        $stmt->bindvalue(password, $password);
+        $stmt->bindValue(email,$email);
         $stmt->execute();
     }
     public function sign_up()
