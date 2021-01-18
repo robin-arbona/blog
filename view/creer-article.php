@@ -1,6 +1,5 @@
 <?php
 
-use App\Controller\CreerarticleController;
 
 
 /** - Une page permettant de créer des articles (creer-article.php) :

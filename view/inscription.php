@@ -8,10 +8,11 @@
  */
 
 ?>
-<form method="post">
+
+<form method="post" action="index.php?page=inscription">
     <div class="mb-3">
         <label for="login" class="form-label">Login</label>
-        <input type="text" class="form-control" id="login">
+        <input name="login" type="text" class="form-control" id="login">
     </div>
     <div class="mb-3">
         <label for="InputPassword" class="form-label">Password</label>
@@ -30,9 +31,9 @@
         <input name="email2" type="email" class="form-control" id="email2">
     </div>
     <button name="sign-up" type="submit" class="btn btn-primary">Sign up</button>
-        <?php
-        if (isset($error)) {
-            echo '<span class="badge badge-danger">' . $error . '</span>';
-        }
-        ?>
+    <?php
+    if (isset($error)) {
+        echo '<span class="badge badge-danger">' . $error . '</span>';
+    }
+    ?>
 </form>
