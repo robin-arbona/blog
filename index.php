@@ -46,12 +46,7 @@ if (!empty($_GET) && isset($_GET['page'])) {
     } elseif ($page == 'creer-article') {
         // Controller Creer-Article
         $creerarticlepage = new CreerarticleController;
-<<<<<<< HEAD
-        $creerarticlepage->render();
-    }elseif ($page == 'profil'){
-=======
     } elseif ($page == 'profil') {
->>>>>>> lecture
         // Controller Profil
         $profilpage = new ProfilController;
     }
