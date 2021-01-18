@@ -5,7 +5,7 @@ namespace App\Controller;
 
 class IndexController extends Controller
 {
-    use loadArticles;
+    use LoadArticles;
 
     protected $articles;
 

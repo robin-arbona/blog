@@ -9,7 +9,7 @@ use App\Model\ArticlesModel;
  * @param number of article loaded
  * @return articles array of articles object
  */
-trait loadArticles
+trait LoadArticles
 {
     public function loadArticles($number = 5, $offset = 0)
     {

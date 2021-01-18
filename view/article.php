@@ -7,4 +7,3 @@
  * GET “id” afin de sélectionner l’article souhaité.
  * ex : https://localhost/blog/article.php/?id=1
  * */
-var_dump($data);

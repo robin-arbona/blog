@@ -6,7 +6,7 @@ namespace App\Controller;
 
 class ArticlesController extends Controller
 {
-    use loadArticles;
+    use LoadArticles;
 
     public function __construct()
     {
