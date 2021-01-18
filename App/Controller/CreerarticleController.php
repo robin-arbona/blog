@@ -6,6 +6,7 @@ namespace App\Controller;
 
 class CreerarticleController extends Controller
 {
+<<<<<<< HEAD
 /** Specific method render taking in count the '-'
  */
     public function render()
@@ -18,3 +19,10 @@ class CreerarticleController extends Controller
     }
 
 }
+=======
+    public function __construct()
+    {
+        $this->render(NULL, 'creer-article');
+    }
+}
+>>>>>>> lecture
