@@ -6,10 +6,11 @@ namespace App\Controller;
 
 class CreerarticleController extends Controller
 {
-    public function test()
+
+
+    public function __construct()
     {
-        echo 'salut';
+        $this->render(NULL, 'creer-article');
     }
-
-
 }
+

@@ -10,8 +10,8 @@ class Database
     static protected $_db;
     static protected $host = 'localhost';
     static protected $dbname = 'blog';
-    static protected $username = 'root';
-    static protected $password = '';
+    static protected $username = 'phpmyadmin';
+    static protected $password = 'lecam';
 
 
     /**

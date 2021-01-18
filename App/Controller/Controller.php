@@ -9,17 +9,38 @@ class Controller
 {
     protected $viewPath = 'view';
 
+    public function __construct()
+    {
+        $this->render();
+    }
+
     /**
      * Generic method which load view in variable $content and require after view/template/template.php
+     * @param data Specific data passed to view to display content
+     * @param viewname is used when viewname couldn't be found automatically with controller name
      */
-    public function render()
+    public function render($data = null, $viewName = NULL)
     {
-        $viewName = $this->getViewName();
         $viewPath = $this->viewPath;
+        $content = $this->loadContent($data, $viewName);
+        require $viewPath . '/template/template.php';
+    }
+
+    /**
+     * Load content from the view wich have the same name that the controller and return it variable
+     * @param data Specific data passed to view to display content
+     * @param viewname Has to be specified if != than the controller name
+     */
+    public function loadContent($data = null, $viewName = NULL)
+    {
+        $viewPath = $this->viewPath;
+        if ($viewName === NULL) {
+            $viewName = $this->getViewName();
+        }
         ob_start();
         require $viewPath . '/' . $viewName . '.php';
         $content = ob_get_clean();
-        require $viewPath . '/template/template.php';
+        return $content;
     }
 
     /**
@@ -32,20 +53,5 @@ class Controller
         $parts = explode('\\', get_class($this));
         $controllerName = end($parts);
         return strtolower(str_replace('Controller', '', $controllerName));
-    }
-
-    public function createarticle_render()
-    {
-        $viewPath = $this->viewPath;
-        ob_start();
-        require $viewPath .'/creer-article.php';
-        $content = ob_get_clean();
-        require $viewPath .'/template/template.php';
-    }
-
-    public function create_article($article, $id_utilisateur, $id_categorie) :void
-    {
-        
-        
     }
 }

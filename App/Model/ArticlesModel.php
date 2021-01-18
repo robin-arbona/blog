@@ -2,16 +2,6 @@
 
 namespace App\Model;
 
-use PDO;
-use App\Database;
-
-class ArticlesModel
+class ArticlesModel extends Model
 {
-    public function getLast()
-    {
-        $SQL = 'SELECT * FROM articles ORDER BY id DESC LIMIT 1;';
-        $sth = Database::getDb()->query($SQL);
-        $sth->setFetchMode(PDO::FETCH_CLASS, 'ArticleEntity');
-        return $sth->fetch();
-    }
 }
