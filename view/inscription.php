@@ -8,6 +8,7 @@
  */
 require 'template/header.php';
 require '../classes/c_inscription.php';
+
 $user = new Inscription();
 $user->new_user();
 ?>
@@ -33,11 +34,6 @@ $user->new_user();
         <input name="email2" type="email" class="form-control" id="email2">
     </div>
     <button name="sign-up" type="submit" class="btn btn-primary">Sign up</button>
-    <?php
-    if (isset($error)) {
-        echo '<span class="badge badge-danger">' . $error . '</span>';
-    }
-    ?>
 </form>
 
-<?php require 'template/header.php';
+<?php require 'template/footer.php';

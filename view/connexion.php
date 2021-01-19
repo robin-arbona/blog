@@ -6,13 +6,17 @@
  * informations, alors l’utilisateur devient connecté et une (ou plusieurs)
  * variables de session sont créées.
  */
+require 'template/header.php';
+require '../classes/c_connexion.php';
 
+$user_connection = new connect();
+$user_connection->connection();
 ?>
 
 <form method="post">
     <div class="mb-3">
         <label for="login" class="form-label">Login</label>
-        <input type="text" class="form-control" id="login">
+        <input name="login" type="text" class="form-control" id="login">
     </div>
     <div class="mb-3">
         <label for="InputPassword" class="form-label">Password</label>
@@ -20,3 +24,6 @@
     </div>
     <button name="sign-in" type="submit" class="btn btn-primary">Sign in</button>
 </form>
+<?php
+
+

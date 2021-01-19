@@ -2,59 +2,64 @@
 
 class Inscription
 {
-public function __construct(){
 
-    $this->login = $_POST['login'];
-    $this->password = $_POST['password'];
-    $this->password2 = $_POST['password2'];
-    $this->email = $_POST['email'];
-    $this->email2 = $_POST['email2'];
-}
-    public function insert_user(){
+    public function insert_user()
+    {
+        $login = htmlspecialchars($_POST['login']);
+        $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+        $email = htmlspecialchars($_POST['email']);
+
+
         $dsn = 'mysql:dbname=blog;host=localhost';
         $user = 'root';
         $pass = '';
         $db = new PDO($dsn,$user,$pass);
         $stmt=$db->prepare("INSERT INTO utilisateurs(login, password, email, id_droits) VALUES (:login,:password,:email,:id_droits)");
-        $stmt->bindValue(':login',$this->login);
-        $stmt->bindvalue(':password', $this->password);
-        $stmt->bindValue(':email',$this->email);
+        $stmt->bindValue(':login',$login);
+        $stmt->bindvalue(':password', $password);
+        $stmt->bindValue(':email',$email);
         $stmt->bindValue(':id_droits',1);
         $stmt->execute();
+        $stmt->fetch(PDO::FETCH_OBJ);
     }
+
     public function new_user()
     {
-
         if (isset($_POST['sign-up'])) {
 
-            if (!empty($this->login)){
+            if (!empty($login)){
 
             } else {
                 $error = 'Please write down your login';
             }
-            if (!empty($this->password)) {
+            if (!empty($password)) {
 
             } else {
                 $error = 'Please write down your password';
             }
-            if (!empty($this->password2)) {
+            if (!empty($password2)) {
 
             } else {
                 $error = 'Please confirm your password';
             }
-            if (!empty($this->email)) {
+            if (!empty($email)) {
 
             } else {
-                $error = 'Please write down your email';
+               $error = 'Please write down your email';
             }
-            if (!empty($this->email2)) {
+            if (!empty($email2)) {
 
             } else {
                 $error = 'Please confirm your email';
             }
+            $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+            $password2 = password_verify($_POST['password2'],$password);
+            $email = htmlspecialchars($_POST['email']);
+            $email2 = htmlspecialchars($_POST['email2']);
 
-            if($this->password == $this->password2 && $this->email == $this->email2){
+            if($password == $password2 && $email == $email2){
                 $this->insert_user();
+                header("Location: connexion.php");
             }
         }
     }

@@ -1,13 +1,6 @@
 <?php
-class ConnexionController
+class Connect
 {
-
-    public function __construct()
-    {
-        parent:: __construct();
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-    }
 
     public function connection()
     {
@@ -22,14 +15,19 @@ class ConnexionController
             } else {
                 $error = 'Please write down your password';
             }
+            $this->user_in_db();
         }
     }
 
-    public function connect_user()
+    public function user_in_db()
     {
-        $db = Database::getDb();
-        $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE login = :login");
-        $stmt->bindValue(':login', $_POST['login']);
+
+        $dsn = 'mysql:dbname=blog;host=localhost';
+        $user = 'root';
+        $pass = '';
+        $db = new PDO($dsn,$user,$pass);
+        $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE login =?");
+        $stmt->bindValue(1, $_POST['login']);
         $stmt->execute();
         $tab = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt->rowCount() > 0) {
@@ -39,8 +37,10 @@ class ConnexionController
                 $_SESSION['id'] = $tab['id'];
                 $_SESSION['password'] = $tab['password'];
                 $_SESSION['email'] = $tab['email'];
-                echo 'you are connected !!';
+
+                header("Location: profil.php?login=" . $_SESSION['login']);
             }
         }
     }
+
 }
