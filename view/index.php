@@ -22,8 +22,8 @@ require_once('template/header.php');
         <?php
         foreach ($articles as $article) { ?>
             <div class="col row justify-content-center my-5">
-                <a href="article.php?id=<?= $article->id ?>" class="card m-3 no-text-decoration" style="width: 20rem;">
-                    <img class="centered-and-cropped" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" class="card-img-top" alt="...">
+                <a href="<?= $article->getLink() ?>" class="card m-3 no-text-decoration" style="width: 20rem;">
+                    <img class="centered-and-cropped" src="<?= $article->getImgPth() ?>" class="card-img-top" alt="...">
 
                     <div class="card-body">
                         <h5 class="card-title"><?= $article->title ?></h5>
@@ -37,7 +37,7 @@ require_once('template/header.php');
     </div>
 
     <div class="row align-items-start justify-content-center">
-        <a class="page-link" href="index.php?page=articles&start=1">More</a>
+        <a class="page-link" href="articles.php">More</a>
     </div>
 
 </div>

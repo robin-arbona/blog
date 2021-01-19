@@ -24,4 +24,14 @@ class ArticlesEntity
         $extract .= ' ...';
         return $extract;
     }
+
+    public function getLink()
+    {
+        return 'article.php?id=' . $this->id;
+    }
+
+    public function getImgPth()
+    {
+        return '../public/image/article_mainpic_' . $this->id . '.jpg';
+    }
 }
