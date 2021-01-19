@@ -12,8 +12,8 @@ public function __construct(){
 }
     public function insert_user(){
         $dsn = 'mysql:dbname=blog;host=localhost';
-        $user = 'phpmyadmin';
-        $pass = 'lecam';
+        $user = 'root';
+        $pass = '';
         $db = new PDO($dsn,$user,$pass);
         $stmt=$db->prepare("INSERT INTO utilisateurs(login, password, email, id_droits) VALUES (:login,:password,:email,:id_droits)");
         $stmt->bindValue(':login',$this->login);

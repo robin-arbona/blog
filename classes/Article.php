@@ -14,8 +14,8 @@ class Article
        
         $host = 'localhost';
         $dbname = 'blog';
-        $user = 'phpmyadmin';
-        $pass = 'lecam';
+        $user = 'root';
+        $pass = '';
         $serveur = "mysql:host=$host;dbname=$dbname";
 
         $pdo = new PDO($serveur,$user,$pass);
