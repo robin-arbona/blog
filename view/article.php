@@ -17,9 +17,14 @@ if (isset($_GET['id'])) {
 require '../classes/Manager.php';
 require '../classes/ArticlesManager.php';
 require '../classes/ArticlesEntity.php';
+require '../classes/CommentairesManager.php';
+require '../classes/CommentairesEntity.php';
 
 $articlesManager = new ArticlesManager;
 $article = $articlesManager->getById($id);
+
+$commentairesManager = new CommentairesManager;
+$commentaires = $commentairesManager->getAllByArticleId($id);
 
 
 require_once('template/header.php');
@@ -27,11 +32,21 @@ require_once('template/header.php');
 ?>
 
 <div class="container">
-    <h1 class="display-1 mt-5 mb-0">Welcome in my blog,</h1>
-    <h2 class="display-4 mt-0">Subtitle goes here.</h2>
-    <?php var_dump($article); ?>
+    <img class="img-fluid" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" alt="...">
+    <h1 class="display-1 mt-5 mb-0"><?= $article->title; ?></h1>
+    <p><?= $article->article; ?></p>
+    <h2>Commentaires</h2>
+    <div class="row justify-content-center">
+        <?php
+        foreach ($commentaires as $commentaire) { ?>
+            <div class="col-8 alert alert-secondary" role="alert">
+                <p class="text"><?= $commentaire->content ?></p>
+                <p class="text"><small class="text-muted">Written by <?= $commentaire->author ?> the <?= $commentaire->date ?></small></p>
+            </div>
 
-
+        <?php }
+        ?>
+    </div>
 </div>
 <?php
 

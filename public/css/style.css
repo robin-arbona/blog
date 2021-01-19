@@ -3,6 +3,11 @@
     width: 20rem;
     height: 20rem;
 }
+
+.centered-and-cropped--small { 
+    height: 10rem;
+}
+
 .no-text-decoration {
     text-decoration: none !important;
     color: black !important;
