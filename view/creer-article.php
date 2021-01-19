@@ -10,31 +10,40 @@
  */
 require_once('template/header.php');
 require_once('../classes/Categorie.php');
+require_once('../classes/Article.php');
 
-$object = new Categorie;
+$modelCategorie = new Categorie;
+$modelArticle = new Article;
+
 
 ?>
-<form class=" g-3" style='border: solid black' method="post" action="creer-article.php">
-    <div class="form-group">
-        <label for="categorie">Categorie :
-            <select class="form-control" id="categorie" name="categorie">
-                <?= $object->getAll()?>
-            </select>
+<section id='createarticle-section'>
+    <form id='createarticle-form' method="post" action="creer-article.php">
+        <div id='createarticle-top'>
+            <label for="categorie">Categorie :
+                <select class="" id="categorie" name="categorie">
+                    <?= $modelCategorie->findAll()?>
+                </select>
+            </label>
+            <label for="titre">Titre :
+                <input class="" type="text" placeholder="Titre" name="titre">
+            </label>
+        </div>
+        <label id='createarticle-center' for="article">
+            <textarea class="edit" id="article" name="article"></textarea>
         </label>
-        <label for="titre">
-            <input class="form-control form-control-lg" type="text" placeholder="Titre" aria-label=".form-control-lg example" name="titre">
-        </label>
-        <label for="article">
-            <textarea class="form-control" id="article" name="article" rows="3"></textarea>
-        </label>
-    </div>
-    <button type="submit" class="btn btn-primary">Publier</button>
+        <button type="submit" id='bouton' class="btn btn-primary">Publier</button>
 
-</form>
+    </form>
+</section>
 
 <?php 
 
-var_dump($_POST['categorie']);
+$id = $modelCategorie->findId($_POST['categorie']);
+
+
+
+//$modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id,);
 
 require_once('template/footer.php'); 
 

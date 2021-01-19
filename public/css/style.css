@@ -7,3 +7,36 @@
     text-decoration: none !important;
     color: black !important;
 }
+
+#createarticle-section
+{
+    border: solid black;
+   
+}
+
+#createarticle-form
+{
+    border: solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+ 
+}
+
+#createarticle-top
+{
+    display: flex;
+    border: solid yellow;
+    justify-content: space-around;
+}
+#createarticle-center
+{
+    border:solid purple;
+}
+
+#bouton
+{
+    max-width: 20%;
+    margin:auto;
+}
+

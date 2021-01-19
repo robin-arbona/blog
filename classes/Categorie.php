@@ -22,15 +22,21 @@ class Categorie
         $this->link = $pdo;
     }
 
-    public function getAll() 
+
+    /**
+     * Renvois liste de tout les catégories
+     * @return string
+     */
+
+    public function findAll() :string
     {
         $SQL = ("SELECT nom FROM categories");
         $data = $this->link->query($SQL)->fetchAll(PDO::FETCH_ASSOC);
         $option = NULL;
         foreach($data as $value)
         {
-            $option .= "<option>".$value['nom']."</option><br/>";
-            //var_dump($value['nom']);
+            $option .= "<option>".$value['nom']."</option>";
+            
 
             
         }
@@ -38,6 +44,23 @@ class Categorie
         
         
     }
+
+    /**
+     * Retourne l'id d'une categorie donnée en parametre
+     * @return string 
+     */
+
+    public function findId(string $nom) :string
+    {
+        $query = $this->link->prepare("SELECT id FROM categories WHERE nom = :nom");
+        $query->execute(['nom' => $nom]);
+        $data = $query->fetch();
+        return $data['id'];
+
+        
+
+    }
+
 
 }
 

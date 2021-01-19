@@ -35,19 +35,37 @@ class Article
         }
     }
 
-    public function createArticle(string $title, string $article, int $id_utilisateur, int $id_categorie, string $date) :void
+    /**
+     * Retourne la date
+     * @return string
+     */
+
+    public function date() :string
+    {
+        return date("Y-m-d H:i:s");
+    }
+
+    /**
+     * Ajoute un article en bdd
+     */
+
+    public function createArticle(string $title, string $article, int $id_utilisateur, int $id_categorie) :void
     {
    
-       $SQL = ("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
-       prepare($SQL)->execute([$title,$article,$id_utilisateur,$id_categorie,$date]);
+       $SQL = $this->link->prepare("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
+       $SQL->execute([$title,$article,$id_utilisateur,$id_categorie,$this->date()]);
        
     }
 
-    public function addComment(string $commentaire, int $id_article, int $id_utilisateur, string $date) :void
+    /**
+     * Ajoute un commentaire en bdd
+     */
+
+    public function addComment(string $commentaire, int $id_article, int $id_utilisateur) :void
     {
    
-       $SQL = ("INSERT INTO commentaires(commentaire, id_article, id_utilisateur, date) VALUE(?, ?, ?, ?)");
-       $this->link->prepare($SQL)->execute([$commentaire, $id_article, $id_utilisateur, $date]);
+       $SQL = $this->link->prepare("INSERT INTO commentaires(commentaire, id_article, id_utilisateur, date) VALUE(?, ?, ?, ?)");
+       $SQL->execute([$commentaire, $id_article, $id_utilisateur, $this->date()]);
        
     }
 
