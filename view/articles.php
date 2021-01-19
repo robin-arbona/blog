@@ -22,8 +22,14 @@ if (isset($_GET['start'])) {
     $offset = 0;
 }
 
+if (isset($_GET['categorie'])) {
+    $categorie = $_GET['categorie'];
+} else {
+    $categorie = NULL;
+}
+
 $articlesManager = new ArticlesManager;
-$articles = $articlesManager->getByXWithOffset($offset, 5);
+$articles = $articlesManager->getArticlesList($offset, 5, $categorie);
 
 require_once('template/header.php');
 
@@ -38,17 +44,15 @@ require_once('template/header.php');
             <img class="col-12 col-sm-4 centered-and-cropped centered-and-cropped--small" src="<?= $article->getImgPth() ?>" class="col" alt="...">
 
             <div class="col-12 col-sm-8">
-                <h5 class="title"><?= $article->title ?></h5>
+                <h5 class="title"><?= $article->title ?> <span class="badge bg-secondary"><?= $article->categorie ?></span></h5>
                 <p class="text"><?= $article->getExtract() ?></p>
-                <p class="text"><small class="text-muted">Written the <?= $article->date ?></small></p>
+                <p class="text"><small class="text-muted">Written by <?= $article->author ?> the <?= $article->date ?></small></p>
             </div>
         </a>
     <?php
     } ?>
 
-    <div class="row align-items-start justify-content-center">
-        <a class="page-link" href="index.php?page=articles&start=1">More</a>
-    </div>
+
 
 </div>
 <?php
