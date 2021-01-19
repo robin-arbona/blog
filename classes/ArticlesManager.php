@@ -26,7 +26,6 @@ class ArticlesManager extends Manager
             $sth->bindValue(':categorie', $categorie, PDO::PARAM_INT);
         }
 
-        var_dump($sth);
         $sth->execute();
 
         return $sth->fetchAll();
