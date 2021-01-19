@@ -9,16 +9,11 @@ class CategoriesEntity
             $URI[$pos + strlen('categorie=')] = $this->id;
             $link = $URI;
         } else {
-            if ($URI[-1] == 'p') {
-                $joinner = '?';
-            } else {
-                $joinner = '&';
-            }
+            $joinner = $URI[-1] == 'p' ? '?' : '&';
             $link = $URI . $joinner . 'categorie=' . $this->id;
         }
         return $link;
     }
-
 
     public function getURI()
     {

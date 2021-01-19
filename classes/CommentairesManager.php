@@ -10,7 +10,7 @@ class CommentairesManager extends Manager
                 FROM {$this->tableName} 
                 JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id
                 WHERE id_article = $id_article 
-            ORDER BY commentaires.id ASC;";
+                ORDER BY commentaires.id ASC;";
         $sth = $this->db->query($SQL);
         $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
 
