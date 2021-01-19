@@ -27,6 +27,15 @@ class Manager
         return $sth->fetchAll();
     }
 
+    public function getAll()
+    {
+        $SQL = "SELECT * FROM {$this->tableName};";
+        $sth = $this->db->query($SQL);
+        $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
+
+        return $sth->fetchAll();
+    }
+
 
     public function getById($id)
     {

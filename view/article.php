@@ -36,16 +36,17 @@ require_once('template/header.php');
     <h1 class="display-1 mt-5 mb-0"><?= $article->title; ?></h1>
     <p><?= $article->article; ?></p>
     <h2>Commentaires</h2>
-    <?php
-    foreach ($commentaires as $commentaire) { ?>
-        <div class="alert alert-secondary" role="alert">
-            <p class="text"><?= $commentaire->content ?></p>
-            <p class="text"><small class="text-muted">Written by <?= $commentaire->author ?> the <?= $commentaire->date ?></small></p>
-        </div>
+    <div class="row justify-content-center">
+        <?php
+        foreach ($commentaires as $commentaire) { ?>
+            <div class="col-8 alert alert-secondary" role="alert">
+                <p class="text"><?= $commentaire->content ?></p>
+                <p class="text"><small class="text-muted">Written by <?= $commentaire->author ?> the <?= $commentaire->date ?></small></p>
+            </div>
 
-    <?php }
-    ?>
-
+        <?php }
+        ?>
+    </div>
 </div>
 <?php
 
