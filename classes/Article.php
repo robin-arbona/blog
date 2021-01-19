@@ -51,10 +51,15 @@ class Article
 
     public function createArticle(string $title, string $article, int $id_utilisateur, int $id_categorie) :void
     {
-   
-       $SQL = $this->link->prepare("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
-       $SQL->execute([$title,$article,$id_utilisateur,$id_categorie,$this->date()]);
-       
+        if(isset($title) && isset($article) && isset($id_categorie))
+        {
+            if(!empty($title) && !empty($article) && !empty($id_categorie))
+            {
+                $SQL = $this->link->prepare("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
+                $SQL->execute([$title,$article,$id_utilisateur,$id_categorie,$this->date()]);
+            }
+        }
+        
     }
 
     /**

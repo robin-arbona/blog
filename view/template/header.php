@@ -28,7 +28,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script><!--Pour editer article-->
-    <script>tinymce.init({selector: '.edit'});
+    <script>
+        tinymce.init({
+            selector: '.edit',
+            height: 300,
+        });
     </script>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light justify-content-between " style='background-color: #e3f2fd'>

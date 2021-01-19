@@ -21,12 +21,12 @@ $modelArticle = new Article;
     <form id='createarticle-form' method="post" action="creer-article.php">
         <div id='createarticle-top'>
             <label for="categorie">Categorie :
-                <select class="" id="categorie" name="categorie">
+                <select class="form-control" id="categorie" name="categorie">
                     <?= $modelCategorie->findAll()?>
                 </select>
             </label>
             <label for="titre">Titre :
-                <input class="" type="text" placeholder="Titre" name="titre">
+                <input class="form-control" type="text" placeholder="Titre" name="titre">
             </label>
         </div>
         <label id='createarticle-center' for="article">
@@ -39,11 +39,13 @@ $modelArticle = new Article;
 
 <?php 
 
-$id = $modelCategorie->findId($_POST['categorie']);
+
+$id = $modelCategorie->findId();
+$modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id);
 
 
 
-//$modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id,);
+
 
 require_once('template/footer.php'); 
 
