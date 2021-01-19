@@ -4,8 +4,7 @@ class CategoriesEntity
 {
     public function getLink()
     {
-        $URI = explode('/', $_SERVER['REQUEST_URI']);
-        $URI = end($URI);
+        $URI = $this->getURI();
         if (($pos = strpos($URI, 'categorie=')) !== FALSE) {
             $URI[$pos + strlen('categorie=')] = $this->id;
             $link = $URI;
@@ -18,5 +17,12 @@ class CategoriesEntity
             $link = $URI . $joinner . 'categorie=' . $this->id;
         }
         return $link;
+    }
+
+
+    public function getURI()
+    {
+        $URI = explode('/', $_SERVER['REQUEST_URI']);
+        return end($URI);
     }
 }
