@@ -6,8 +6,8 @@ class ArticlesManager extends Manager
     {
         $SQL = "SELECT articles.id, articles.title, articles.article, categories.nom AS categorie, articles.date, utilisateurs.login AS author
                  FROM articles
-                 JOIN categories ON articles.id_categorie = categories.id
-                 JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id ";
+                 LEFT JOIN categories ON articles.id_categorie = categories.id
+                 LEFT JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id ";
 
         if ($categorie !== NULL) {
             $SQL .= ' WHERE categories.id = :categorie;';
