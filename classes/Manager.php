@@ -14,6 +14,7 @@ class Manager
     {
         $this->db = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->login, $this->password);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->db->exec('SET NAMES utf8');
         $this->tableName = $this->getTableName();
         $this->entityName = $this->getEntityName();
     }
