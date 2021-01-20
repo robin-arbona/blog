@@ -24,8 +24,14 @@ $articlesManager = new ArticlesManager;
 $article = $articlesManager->getById($id);
 
 $commentairesManager = new CommentairesManager;
-$commentaires = $commentairesManager->getAllByArticleId($id);
 
+session_start();
+
+if (isset($_POST['commentaire'])) {
+    $commentairesManager->add($_POST['commentaire'], $id, $_SESSION['id']);
+}
+
+$commentaires = $commentairesManager->getAllByArticleId($id);
 
 require_once('template/header.php');
 
@@ -36,7 +42,15 @@ require_once('template/header.php');
     <h1 class="display-1 mt-5 mb-0"><?= $article->title; ?></h1>
     <p><?= $article->article; ?></p>
     <h2>Commentaires</h2>
+
     <div class="row justify-content-center">
+        <form class="col-8 alert alert-secondary" method="POST">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Post new comment</label>
+                <textarea name="commentaire" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Poster">
+        </form>
         <?php
         foreach ($commentaires as $commentaire) { ?>
             <div class="col-8 alert alert-secondary" role="alert">

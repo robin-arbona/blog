@@ -55,4 +55,9 @@ class Manager
     {
         return ucfirst($this->tableName) . 'Entity';
     }
+
+    public function date(): string
+    {
+        return date("Y-m-d H:i:s");
+    }
 }

@@ -32,7 +32,7 @@ class UserLogIn
             if (password_verify($_POST['password'], $tab['password'])) {
                 $_SESSION['login'] = $tab['login'];
                 $_SESSION['id'] = $tab['id'];
-                $_SESSION['id_droits'] = $tab = ['id_droits'];
+                $_SESSION['id_droits'] = $tab['id_droits'];
 
                 header("Location: profil.php?login=" . $_SESSION['login']);
             }
