@@ -14,7 +14,7 @@ if(isset($_POST['sign-up']))
 try{
   $user->new_user();
 }catch(Exception $e){
-    echo $e;
+    echo $e->getMessage();
 }
 ?>
 <form method="post">
