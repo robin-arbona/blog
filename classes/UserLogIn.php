@@ -6,12 +6,10 @@ class UserLogIn
     {
         if (isset($_POST['sign-in'])) {
             if (!empty($_POST['login'])) {
-
             } else {
                 $error = 'Please write down your login';
             }
             if (!empty($_POST['password'])) {
-
             } else {
                 $error = 'Please write down your password';
             }
@@ -23,9 +21,9 @@ class UserLogIn
     {
 
         $dsn = 'mysql:dbname=blog;host=localhost';
-        $user = 'phpmyadmin';
-        $pass = 'lecam';
-        $db = new PDO($dsn,$user,$pass);
+        $user = 'root';
+        $pass = '';
+        $db = new PDO($dsn, $user, $pass);
         $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE login =?");
         $stmt->bindValue(1, $_POST['login']);
         $stmt->execute();
@@ -34,11 +32,10 @@ class UserLogIn
             if (password_verify($_POST['password'], $tab['password'])) {
                 $_SESSION['login'] = $tab['login'];
                 $_SESSION['id'] = $tab['id'];
-                $_SESSION['id_droits'] = $tab=['id_droits'];
+                $_SESSION['id_droits'] = $tab = ['id_droits'];
 
                 header("Location: profil.php?login=" . $_SESSION['login']);
             }
         }
     }
-
 }
