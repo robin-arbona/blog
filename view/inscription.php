@@ -17,7 +17,7 @@ try{
     echo $e->getMessage();
 }
 ?>
-<form method="post" ">
+<form method="post">
     <div class="mb-3">
         <label for="login" class="form-label">Login</label>
         <input name="login" type="text" class="form-control" id="login">

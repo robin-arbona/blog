@@ -14,8 +14,8 @@ class Categorie
        
         $host = 'localhost';
         $dbname = 'blog';
-        $user = 'root';
-        $pass = '';
+        $user = 'phpmyadmin';
+        $pass = 'lecam';
         $serveur = "mysql:host=$host;dbname=$dbname";
 
         $pdo = new PDO($serveur,$user,$pass);
@@ -50,25 +50,12 @@ class Categorie
      * @return string 
      */
 
-    public function findId() 
+    public function findId($article) 
     {
-        
-        if(isset($_POST['categorie']))
-        {
-            $nom = $_POST['categorie'];
-            var_dump($nom);
-
-            if(!empty($nom))
-            {
-                $query = $this->link->prepare("SELECT id FROM categories WHERE nom = :nom");
-                $query->execute(['nom' => $nom]);
-                $data = $query->fetch();
-                return $data['id'];
-
-            }
-        }
-
-
+        $query = $this->link->prepare("SELECT id FROM categories WHERE nom = :nom");
+        $query->execute(['nom' => $article]);
+        $data = $query->fetch();
+        return $data['id'];
     }
 
 
