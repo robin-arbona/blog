@@ -36,8 +36,8 @@ require_once('template/header.php');
         } ?>
     </div>
 
-    <div class="row align-items-start justify-content-center">
-        <a class="page-link" href="articles.php">More</a>
+    <div class="row align-items-start justify-content-center m-5">
+        <a class="col-6 page-link text-center bg-primary text-white rounded" href="articles.php">More articles</a>
     </div>
 
 </div>

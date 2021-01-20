@@ -7,6 +7,9 @@ class PaginationManager extends Manager
     protected $pageActive;
     protected $back_btn_active;
     protected $next_btn_active;
+    protected $offset;
+    protected $limit;
+    protected $categorie;
 
     public function __construct(int $offset, int $limit = 5, $categorie = NULL)
     {
@@ -17,6 +20,9 @@ class PaginationManager extends Manager
         $this->loadParameters();
     }
 
+    /**
+     * Save in to instance parameters of navigation pagination based on SQL request
+     */
     public function loadParameters()
     {
         $SQL = 'SELECT COUNT(id) FROM articles ';
