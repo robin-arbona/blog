@@ -31,7 +31,8 @@
     <script>
         tinymce.init({
             selector: '.edit',
-            height: 300,
+            min_height: 500,
+            menubar: false,
         });
     </script>
     <header>

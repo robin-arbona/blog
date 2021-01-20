@@ -32,16 +32,19 @@ $modelArticle = new Article;
         <label id='createarticle-center' for="article">
             <textarea class="edit" id="article" name="article"></textarea>
         </label>
-        <button type="submit" id='bouton' class="btn btn-primary">Publier</button>
-
+        <button type="submit" id='bouton'class="btn btn-primary">Publier</button>
     </form>
 </section>
 
 <?php 
 
 
-$id = $modelCategorie->findId();
-$modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id);
+
+if(isset($_POST['categorie']) && isset($_POST['titre']) && isset($_POST['article']))
+{
+    $id = $modelCategorie->findId($_POST['categorie']);
+    $modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id);
+}
 
 
 
