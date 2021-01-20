@@ -13,35 +13,29 @@
     color: black !important;
 }
 
-#createarticle-section
-{
-    border: solid black;
-   
-}
-
 #createarticle-form
 {
-    border: solid red;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
- 
+    align-items: center;
 }
 
 #createarticle-top
 {
     display: flex;
-    border: solid yellow;
+    width: 100%;
     justify-content: space-around;
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 #createarticle-center
 {
-    border:solid purple;
+    width: 100%;
 }
 
 #bouton
 {
-    max-width: 20%;
-    margin:auto;
+    margin:1%;
+    
 }
 
