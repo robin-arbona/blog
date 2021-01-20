@@ -14,25 +14,26 @@ class ModifyProfil
                 $email = htmlspecialchars($_POST['email']);
                 $email2 = htmlspecialchars($_POST['email2']);
                 $error = [];
-                if (!empty($login)) {
+
+                if (empty($login)) {
                     $error[] = 'Please write down your login';
                 }
-                if (!empty($password)) {
+                if (empty($password)) {
                     $error[] = 'Please write down your password';
                 }
-                if (!empty($password2)) {
+                if (empty($password2)) {
                     $error[] = 'Please confirm your password';
                 }
-                if (!empty($email)) {
+                if (empty($email)) {
                     $error[] = 'Please write down your email';
                 }
-                if (!empty($email2)) {
+                if (empty($email2)) {
                     $error[] = 'Please confirm your password';
                 }
-                if ($password == $password2) {
+                if ($password != $password2) {
                     $error[] = 'Your two passwords do not match';
                 }
-                if ($email == $email2) {
+                if ($email != $email2) {
                     $error[] = 'Your two emails do not match';
                 }
                 if (!empty($error)) {

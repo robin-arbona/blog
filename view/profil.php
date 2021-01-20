@@ -40,3 +40,5 @@ try{
 </div>
 <button name="update" type="submit" class="btn btn-primary">Update</button>
 </form>
+<?php
+require 'template/footer.php';
