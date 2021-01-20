@@ -19,8 +19,8 @@ class modify_profil
              if(!empty($login) && !empty($password) && !empty($password2) && !empty($email) && !empty($email2) && $password == $password2 && $email == $email2)
             {
                 $dsn = 'mysql:dbname=blog;host=localhost';
-                $user = 'root';
-                $pass = '';
+                $user = 'phpmyadmin';
+                $pass = 'lecam';
                 $db = new PDO($dsn,$user,$pass);
 
                 $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE id = :id");

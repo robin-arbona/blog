@@ -23,8 +23,8 @@ class Connect
     {
 
         $dsn = 'mysql:dbname=blog;host=localhost';
-        $user = 'root';
-        $pass = '';
+        $user = 'phpmyadmin';
+        $pass = 'lecam';
         $db = new PDO($dsn,$user,$pass);
         $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE login =?");
         $stmt->bindValue(1, $_POST['login']);
