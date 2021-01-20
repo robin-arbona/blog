@@ -8,7 +8,12 @@ require 'template/header.php';
 require '../classes/ModifyProfil.php';
 
 $modify = new ModifyProfil();
-$modify->modify_user();
+try{
+    $modify->modify_user();
+}catch (Exception $e){
+    echo $e->getMessage();
+}
+
 
 ?>
 

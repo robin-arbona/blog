@@ -8,12 +8,12 @@
  */
 require 'template/header.php';
 require '../classes/UserLogIn.php';
-
+session_start();
 $user_connection = new UserLogIn();
 try {
     $user_connection->connection();
     }catch(Exception $e){
-        echo $e;
+        echo $e->getMessage();
     }
 
 ?>
@@ -30,5 +30,4 @@ try {
     <button name="sign-in" type="submit" class="btn btn-primary">Sign in</button>
 </form>
 <?php
-
-
+require 'template/footer.php';
