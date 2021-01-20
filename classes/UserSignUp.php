@@ -36,19 +36,19 @@ class UserSignUp
                     $error = [];
 
                     if (empty($login)) {
-                        $error[]= 'Please write down your login';//throw new Exception('Please write down your login');
+                        $error[]= 'Please write down your login';
                     }
                     if (empty($password)) {
-                        $error[]= 'Please write down your password';//throw new Exception('Please write down your password');
+                        $error[]= 'Please write down your password';
                     }
                     if (empty($password2)) {
-                        $error[] = 'Please confirm your password';//throw new Exception('Please confirm your password');
+                        $error[] = 'Please confirm your password';
                     }
                     if (empty($email)) {
-                        $error[] = 'Please write down your email';//throw new Exception('Please write down your email');
+                        $error[] = 'Please write down your email';
                     }
                     if (empty($email2)) {
-                       $error[] = 'Please confirm your email';//throw new Exception('Please confirm your email');
+                       $error[] = 'Please confirm your email';
                     }
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     $password2 = password_verify($_POST['password2'], $password);

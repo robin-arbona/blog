@@ -42,10 +42,10 @@
                     <button type="button" class="btn btn-primary">Home</button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Connexion</a> <!-- Ou Profil si session true-->
+                    <a class="nav-link" href="../view/connexion.php">Connexion</a> <!-- Ou Profil si session true-->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inscription</a> <!-- Ou Deconnexion si session true -->
+                    <a class="nav-link" href="../view/inscription.php">Inscription</a> <!-- Ou Deconnexion si session true -->
                 </li>
             </ul>
             <ul class="nav nav-pills ">

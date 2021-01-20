@@ -8,7 +8,12 @@ require 'template/header.php';
 require '../classes/ModifyProfil.php';
 
 $modify = new ModifyProfil();
-$modify->modify_user();
+try{
+    $modify->modify_user();
+}catch (Exception $e){
+    echo $e->getMessage();
+}
+
 
 ?>
 
@@ -35,3 +40,5 @@ $modify->modify_user();
 </div>
 <button name="update" type="submit" class="btn btn-primary">Update</button>
 </form>
+<?php
+require 'template/footer.php';
