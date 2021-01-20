@@ -1,6 +1,6 @@
 <?php
 
-class modify_profil
+class ModifyProfil
 {
     public function modify_user()
     {
