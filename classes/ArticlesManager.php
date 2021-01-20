@@ -10,7 +10,7 @@ class ArticlesManager extends Manager
                  LEFT JOIN utilisateurs ON articles.id_utilisateur = utilisateurs.id ";
 
         if ($categorie !== NULL) {
-            $SQL .= ' WHERE categories.id = :categorie;';
+            $SQL .= ' WHERE categories.id = :categorie ';
         }
 
         $SQL .= "ORDER BY id ASC LIMIT :limit 
