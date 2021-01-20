@@ -14,7 +14,7 @@ class Manager
     {
         $this->db = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->login, $this->password);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->tableName = $this->getManagerName();
+        $this->tableName = $this->getTableName();
         $this->entityName = $this->getEntityName();
     }
 
@@ -46,7 +46,7 @@ class Manager
         return $sth->fetch();
     }
 
-    public function getManagerName()
+    public function getTableName()
     {
         return strtolower(str_replace('Manager', '', get_class($this)));
     }
