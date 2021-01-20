@@ -7,10 +7,15 @@
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
 require 'template/header.php';
-require '../classes/c_inscription.php';
+require '../classes/UserSignUp.php';
 
-$user = new Inscription();
-$user->new_user();
+$user = new UserSignUp();
+if(isset($_POST['sign-up']))
+try{
+  $user->new_user();
+}catch(Exception $e){
+    echo $e;
+}
 ?>
 <form method="post" ">
     <div class="mb-3">
