@@ -47,7 +47,7 @@ require_once('template/header.php');
         <a class="badge badge-primary" href="<?= $categorie->getLink() ?>"><?= $categorie->nom ?></a>
 
     <?php } ?>
-    <a class="badge badge-primary" href="articles.php">No filter</a>
+    <a class="badge badge-secondary" href="articles.php">No filter</a>
 
     <?php
     foreach ($articles as $article) { ?>
