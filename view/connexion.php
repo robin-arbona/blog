@@ -7,10 +7,15 @@
  * variables de session sont créées.
  */
 require 'template/header.php';
-require '../classes/c_connexion.php';
+require '../classes/UserLogIn.php';
 
-$user_connection = new connect();
-$user_connection->connection();
+$user_connection = new UserLogIn();
+try {
+    $user_connection->connection();
+    }catch(Exception $e){
+        echo $e;
+    }
+
 ?>
 
 <form method="post">

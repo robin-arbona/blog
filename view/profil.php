@@ -5,9 +5,9 @@
  * l’ensemble de ses informations.
  */
 require 'template/header.php';
-require '../classes/modify_profil.php';
+require '../classes/ModifyProfil.php';
 
-$modify = new modify_profil();
+$modify = new ModifyProfil();
 $modify->modify_user();
 
 ?>

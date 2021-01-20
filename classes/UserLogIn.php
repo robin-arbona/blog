@@ -1,5 +1,5 @@
 <?php
-class Connect
+class UserLogIn
 {
 
     public function connection()
@@ -32,11 +32,9 @@ class Connect
         $tab = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($stmt->rowCount() > 0) {
             if (password_verify($_POST['password'], $tab['password'])) {
-                session_start();
                 $_SESSION['login'] = $tab['login'];
                 $_SESSION['id'] = $tab['id'];
-                $_SESSION['password'] = $tab['password'];
-                $_SESSION['email'] = $tab['email'];
+                $_SESSION['id_droits'] = $tab=['id_droits'];
 
                 header("Location: profil.php?login=" . $_SESSION['login']);
             }
