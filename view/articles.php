@@ -68,34 +68,32 @@ require_once('template/header.php');
     <?php
     } ?>
 
-
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item <?= $paginationManager->back_btn_active ? '' : 'disabled'; ?>">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-
-            <?php
-            for ($page = 1; $page <= $paginationManager->totalPageNb; $page++) { ?>
-                <li class="page-item <?= $page == $paginationManager->pageActive ? 'active' : '' ?>">
-                    <a class="page-link" href="<?= $paginationManager->getLink($page) ?>"><?= $page ?></a>
+    <div class='row justify-content-center'>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item <?= $paginationManager->back_btn_active ? '' : 'disabled'; ?>">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
                 </li>
-            <?php }
-            ?>
 
-
-            <li class="page-item <?= $paginationManager->next_btn_active ? '' : 'disabled'; ?>">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
+                <?php
+                for ($page = 1; $page <= $paginationManager->totalPageNb; $page++) { ?>
+                    <li class="page-item <?= $page == $paginationManager->pageActive ? 'active' : '' ?>">
+                        <a class="page-link" href="<?= $paginationManager->getLink($page) ?>"><?= $page ?></a>
+                    </li>
+                <?php }
+                ?>
+                <li class="page-item <?= $paginationManager->next_btn_active ? '' : 'disabled'; ?>">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
 
 </div>
