@@ -27,8 +27,17 @@ $commentairesManager = new CommentairesManager;
 
 session_start();
 
+$id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
+
 if (isset($_POST['commentaire'])) {
     $commentairesManager->add($_POST['commentaire'], $id, $_SESSION['id']);
+} elseif (isset($_POST['commentaireEdit']) && ($id_droits == 42 || $id_droits == 1337)) {
+    $commentairesManager->update($_POST['cmt_id'], $_POST['commentaireEdit']);
+    header("Location: article.php?id=$id");
+}
+
+if (isset($_GET['action']) && ($_GET['action'] == 'delete') && ($id_droits == 42 || $id_droits == 1337)) {
+    $commentairesManager->delete($_GET['cmt_id']);
 }
 
 $commentaires = $commentairesManager->getAllByArticleId($id);
@@ -41,21 +50,24 @@ require_once('template/header.php');
     <img class="img-fluid" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" alt="...">
     <h1 class="display-1 mt-5 mb-0"><?= $article->title; ?></h1>
     <p><?= $article->article; ?></p>
-    <h2>Commentaires</h2>
 
+    <h2>Commentaires</h2>
     <div class="row justify-content-center">
         <form class="col-8 alert alert-secondary" method="POST">
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Post new comment</label>
-                <textarea name="commentaire" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for='commentaire'><?= isset($_GET['action']) && $_GET['action'] == 'edit' ? "Edit comment from {$commentairesManager->getById($_GET['cmt_id'])->id_utilisateur} posted {$commentairesManager->getById($_GET['cmt_id'])->date}" : 'Post new comment'; ?></label>
+                <textarea name="commentaire<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'Edit' : ''; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= isset($_GET['action']) && $_GET['action'] == 'edit' ? $commentairesManager->getById($_GET['cmt_id'])->commentaire : ''; ?></textarea>
+                <input type="hidden" name="cmt_id" value=<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? $_GET['cmt_id'] : ''; ?>>
             </div>
-            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Poster">
+            <input class="btn <?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'btn-warning' : 'btn-primary'; ?> btn-lg btn-block" type="submit" value="<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'Edit' : 'Poster'; ?>">
         </form>
         <?php
         foreach ($commentaires as $commentaire) { ?>
             <div class="col-8 alert alert-secondary" role="alert">
-                <p class="text"><?= $commentaire->content ?></p>
-                <p class="text"><small class="text-muted">Written by <?= $commentaire->author ?> the <?= $commentaire->date ?></small></p>
+                <p class="text"><?= $commentaire->commentaire ?></p>
+                <p class="text"><small class="text-muted">Written by <?= $commentaire->login ?> the <?= $commentaire->date ?></small></p>
+                <?= ($id_droits == 42 || $id_droits == 1337) ?  $commentaire->getLinkEdit()  : '' ?>
+                <?= ($id_droits == 42 || $id_droits == 1337) ? $commentaire->getLinkDelete()  : '' ?>
             </div>
 
         <?php }

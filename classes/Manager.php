@@ -61,4 +61,10 @@ class Manager
     {
         return date("Y-m-d H:i:s");
     }
+
+    public function delete($id)
+    {
+        $SQL = "DELETE FROM {$this->tableName} WHERE id = " . (int) $id;
+        $this->db->query($SQL);
+    }
 }
