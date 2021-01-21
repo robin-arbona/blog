@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 /**
  * Le formulaire doit avoir deux inputs : “login” et “password”. Lorsque le
  * formulaire est validé, s’il existe un utilisateur en bdd correspondant à ces
@@ -15,7 +14,6 @@ try {
     }catch(Exception $e){
         echo $e->getMessage();
     }
-
 ?>
 
 <form method="post">

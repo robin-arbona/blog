@@ -28,7 +28,7 @@ class Categorie
      * @return string
      */
 
-    public function findAll() :string
+    public function findAll()
     {
         $SQL = ("SELECT nom FROM categories");
         $data = $this->link->query($SQL)->fetchAll(PDO::FETCH_ASSOC);

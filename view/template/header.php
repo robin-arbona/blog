@@ -48,6 +48,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../view/inscription.php">Inscription</a> <!-- Ou Deconnexion si session true -->
                 </li>
+
+                <?php }else{ ?>
+                <li class="nav-item">
+                <a class="nav-link" href="../view/profil.php">Profil</a>
+                </li>
+                <form method="post"><button name="logout" type="submit" class="btn btn-danger ">Log Out</button></form>
+                    <?php if(isset($_POST['logout']))
+                    {
+                        session_destroy();
+                        header('Location: ../view/connexion.php');
+                    }?>
                 <?php } ?>
             </ul>
             <ul class="nav nav-pills ">
