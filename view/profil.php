@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 /**
  * Cette page possède un formulaire permettant à l’utilisateur de modifier 
@@ -9,8 +10,14 @@ require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 require 'template/header.php';
 require '../classes/ModifyProfil.php';
+<<<<<<< HEAD
 
 
+=======
+if(!isset($_SESSION['id'])){
+    header('Location: connexion.php');
+}
+>>>>>>> 4be9675302e18659cc2f0cd53caf2d9c65bc64b3
 $modify = new ModifyProfil();
 try {
     $modify->modify_user();

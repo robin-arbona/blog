@@ -4,7 +4,6 @@ class ModifyProfil
 {
     public function modify_user()
     {
-        session_start();
         if (isset($_SESSION['id'])) {
             if (isset($_POST['update'])) {
                 $id = $_SESSION['id'];
