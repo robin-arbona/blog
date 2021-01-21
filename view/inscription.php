@@ -18,27 +18,39 @@ try{
 }
 ?>
 <form method="post">
-    <div class="mb-3">
-        <label for="login" class="form-label">Login</label>
+    <div class="d-flex justify-content-center mt-5">
+    <div class=" form-group w-25 ">
+        <label for="login" class="form-label ">Login</label>
         <input name="login" type="text" class="form-control" id="login">
     </div>
-    <div class="mb-3">
-        <label for="InputPassword" class="form-label">Password</label>
-        <input name="password" type="password" class="form-control" id="InputPassword">
     </div>
-    <div class="mb-3">
-        <label for="Password2" class="form-label"> Please confirm your password </label>
-        <input name="password2" type="password" class="form-control" id="Password2">
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="mb-3 ml-3">
+                <label for="InputPassword" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" id="InputPassword">
+            </div>
+            <div class="mb-3 ml-3">
+                <label for="Password2" class="form-label"> Please confirm your password </label>
+                <input name="password2" type="password" class="form-control" id="Password2">
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="Email" class="form-label">Email address</label>
-        <input name="email" type="email" class="form-control" id="Email">
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="mb-3 ml-3">
+                <label for="Email" class="form-label">Email address</label>
+                <input name="email" type="email" class="form-control" id="Email">
+            </div>
+            <div class="mb-3 ml-3 ">
+                <label for="email2" class="form-label">Please confirm your email address</label>
+                <input name="email2" type="email" class="form-control" id="email2">
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="email2" class="form-label">Please confirm your email address</label>
-        <input name="email2" type="email" class="form-control" id="email2">
+    <div class="d-flex justify-content-center">
+        <button name="sign-up" type="submit" class="btn btn-primary mb-5">Sign up</button>
     </div>
-    <button name="sign-up" type="submit" class="btn btn-primary">Sign up</button>
 </form>
 
 <?php require 'template/footer.php';
