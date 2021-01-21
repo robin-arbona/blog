@@ -6,23 +6,27 @@
  * remplit ce formulaire, les données sont insérées dans la base de
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
+require '../classes/Manager.php';
+require '../classes/CategoriesManager.php';
+require '../classes/CategoriesEntity.php';
 require 'template/header.php';
 require '../classes/UserSignUp.php';
 
+
 $user = new UserSignUp();
-if(isset($_POST['sign-up']))
-try{
-  $user->new_user();
-}catch(Exception $e){
-    echo $e->getMessage();
-}
+if (isset($_POST['sign-up']))
+    try {
+        $user->new_user();
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
 ?>
 <form method="post">
     <div class="d-flex justify-content-center mt-5">
-    <div class=" form-group w-25 ">
-        <label for="login" class="form-label ">Login</label>
-        <input name="login" type="text" class="form-control" id="login">
-    </div>
+        <div class=" form-group w-25 ">
+            <label for="login" class="form-label ">Login</label>
+            <input name="login" type="text" class="form-control" id="login">
+        </div>
     </div>
     <div class="d-flex justify-content-center">
         <div class="row">

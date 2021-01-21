@@ -12,14 +12,16 @@
  * articles 11 à 15 ayant comme id_categorie 1).
  */
 
-$ARTICLES_PER_PAGE = 5;
-
+session_start();
 require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
 require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
+require '../classes/ArticlesManager.php';
+require '../classes/ArticlesEntity.php';
 require '../classes/PaginationManager.php';
+
+$ARTICLES_PER_PAGE = 5;
+
 
 if (isset($_GET['start'])) {
     $offset = $_GET['start'];
@@ -52,7 +54,7 @@ require_once('template/header.php');
         <a class="badge badge-primary" href="<?= $categorie->getLink() ?>"><?= $categorie->nom ?></a>
 
     <?php } ?>
-    <a class="badge badge-secondary" href="articles.php">No filter</a>
+    <a class="badge badge-secondary" href="articles.php">All</a>
 
     <?php
     foreach ($articles as $article) { ?>

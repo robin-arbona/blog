@@ -22,7 +22,7 @@ class ArticlesEntity
             $extract .= $articleTab[$i] . ' ';
         }
         $extract .= ' ...';
-        return $extract;
+        return strip_tags($extract);
     }
 
     public function getLink()

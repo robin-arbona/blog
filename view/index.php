@@ -3,10 +3,13 @@
 /**
  * Cette page contient les 3 derniers articles. En bas de la page, il doit y avoir un lien vers la page articles.
  */
+session_start();
 
 require '../classes/Manager.php';
 require '../classes/ArticlesManager.php';
 require '../classes/ArticlesEntity.php';
+require '../classes/CategoriesManager.php';
+require '../classes/CategoriesEntity.php';
 
 $articlesManager = new ArticlesManager;
 $articles = $articlesManager->getLast(3);

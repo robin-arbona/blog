@@ -8,24 +8,27 @@
  * ex : https://localhost/blog/article.php/?id=1
  * */
 
+session_start();
+require '../classes/Manager.php';
+require '../classes/ArticlesManager.php';
+require '../classes/ArticlesEntity.php';
+require '../classes/CommentairesManager.php';
+require '../classes/CommentairesEntity.php';
+require '../classes/CategoriesManager.php';
+require '../classes/CategoriesEntity.php';
+
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
     header('Location: index.php?404');
 }
 
-require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/CommentairesManager.php';
-require '../classes/CommentairesEntity.php';
-
 $articlesManager = new ArticlesManager;
 $article = $articlesManager->getById($id);
 
 $commentairesManager = new CommentairesManager;
 
-session_start();
 
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
 

@@ -11,6 +11,11 @@
 
  * 
  */
+
+
+$categoriesManager = new CategoriesManager;
+$categories = $categoriesManager->getAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script><!--Pour editer article-->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!--Pour editer article-->
     <script>
         tinymce.init({
             selector: '.edit',
@@ -52,11 +58,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Articles</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">catégorie1</a>
-                        <a class="dropdown-item" href="#">catégorie2</a>
-                        <a class="dropdown-item" href="#">catégorie3</a>
+                        <?php
+                        foreach ($categories as $categorie) { ?>
+                            <a class="dropdown-item" href="<?= $categorie->getLink() ?>"><?= $categorie->nom ?></a>
+
+                        <?php } ?>
+                        <a class="dropdown-item" href="articles.php">All</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item disabled" href="#">publier un article</a>
+                        <a class="dropdown-item" href="creer-article.php">Nouvel article</a>
                     </div>
                 </li>
                 <li class="nav-item">

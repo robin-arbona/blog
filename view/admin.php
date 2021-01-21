@@ -7,6 +7,10 @@
  * de catégories, d’utilisateurs, droits...)
  */
 
+require '../classes/Manager.php';
+require '../classes/CategoriesManager.php';
+require '../classes/CategoriesEntity.php';
+
 require_once('template/header.php');
 
 require_once('template/footer.php');

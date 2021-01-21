@@ -8,9 +8,13 @@
  * le texte de l’article, une liste déroulante contenant les catégories existantes
  * en base de données et un bouton submit.
  */
+require '../classes/Manager.php';
+require '../classes/CategoriesManager.php';
+require '../classes/CategoriesEntity.php';
 require_once('template/header.php');
 require_once('../classes/Categorie.php');
 require_once('../classes/Article.php');
+
 
 $modelCategorie = new Categorie;
 $modelArticle = new Article;
@@ -22,7 +26,7 @@ $modelArticle = new Article;
         <div id='createarticle-top'>
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
-                    <?= $modelCategorie->findAll()?>
+                    <?= $modelCategorie->findAll() ?>
                 </select>
             </label>
             <label for="titre">Titre :
@@ -32,28 +36,24 @@ $modelArticle = new Article;
         <label id='createarticle-center' for="article">
             <textarea class="edit" id="article" name="article"></textarea>
         </label>
-        <button type="submit" id='bouton'class="btn btn-primary">Publier</button>
+        <button type="submit" id='bouton' class="btn btn-primary">Publier</button>
     </form>
 </section>
 
-<?php 
+<?php
 
 
 
-if(isset($_POST['categorie']) && isset($_POST['titre']) && isset($_POST['article']))
-{
+if (isset($_POST['categorie']) && isset($_POST['titre']) && isset($_POST['article'])) {
     $id = $modelCategorie->findId($_POST['categorie']);
-    $modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id);
+    $modelArticle->createArticle($_POST['titre'], $_POST['article'], 2, $id);
 }
 
 
 
 
 
-require_once('template/footer.php'); 
+require_once('template/footer.php');
 
-      
+
 ?>
-
-
-
