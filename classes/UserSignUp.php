@@ -3,12 +3,12 @@
 class UserSignUp
 {
 
-    public function insert_user()
+    public function insert_user($id_droits = 1)
     {
         $login = htmlspecialchars($_POST['login']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = htmlspecialchars($_POST['email']);
-
+        $id_droits =htmlspecialchars($_POST['power']);
 
         $dsn = 'mysql:dbname=blog;host=localhost';
         $user = 'root';
@@ -18,7 +18,7 @@ class UserSignUp
         $stmt->bindValue(':login', $login);
         $stmt->bindvalue(':password', $password);
         $stmt->bindValue(':email', $email);
-        $stmt->bindValue(':id_droits', 1);
+        $stmt->bindValue(':id_droits', $id_droits);
         $stmt->execute();
         $stmt->fetch(PDO::FETCH_OBJ);
     }

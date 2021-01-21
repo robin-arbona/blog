@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * Le formulaire doit contenir l’ensemble des champs présents dans la table
  * “utilisateurs” ainsi qu’une confirmation de mot de passe. Dès qu’un utilisateur 
@@ -52,6 +52,16 @@ if (isset($_POST['sign-up']))
             </div>
         </div>
     </div>
+    <?php if($_SESSION['id_droits'] == 1337){ ?>
+    <div class="mb-3 ml-3 d-flex justify-content-center">
+        <select name="power">
+            <option>--utilisateur--modérateur--administrateur</option>
+            <option name="utilisateur">1</option>
+            <option name="moderateur">42</option>
+            <option name="admin">1337</option>
+        </select>
+    </div>
+    <?php }?>
     <div class="d-flex justify-content-center">
         <button name="sign-up" type="submit" class="btn btn-primary mb-5">Sign up</button>
     </div>
