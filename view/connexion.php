@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 /**
  * Le formulaire doit avoir deux inputs : “login” et “password”. Lorsque le
@@ -8,7 +9,6 @@
  */
 require 'template/header.php';
 require '../classes/UserLogIn.php';
-session_start();
 $user_connection = new UserLogIn();
 try {
     $user_connection->connection();

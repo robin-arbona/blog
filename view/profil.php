@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 /**
  * Cette page possède un formulaire permettant à l’utilisateur de modifier 
@@ -6,7 +7,9 @@
  */
 require 'template/header.php';
 require '../classes/ModifyProfil.php';
-
+if(!isset($_SESSION['id'])){
+    header('Location: connexion.php');
+}
 $modify = new ModifyProfil();
 try{
     $modify->modify_user();

@@ -39,14 +39,16 @@
         <nav class="navbar navbar-expand-lg navbar-light justify-content-between " style='background-color: #e3f2fd'>
             <ul class="nav">
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary">Home</button>
+                    <a type="button" href="../index.php" class="btn btn-primary">Home</a>
                 </li>
+                <?php if(!isset($_SESSION['id'])){ ?>
                 <li class="nav-item">
                     <a class="nav-link" href="../view/connexion.php">Connexion</a> <!-- Ou Profil si session true-->
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../view/inscription.php">Inscription</a> <!-- Ou Deconnexion si session true -->
                 </li>
+                <?php } ?>
             </ul>
             <ul class="nav nav-pills ">
                 <li class="nav-item dropdown">
