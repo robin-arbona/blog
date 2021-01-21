@@ -8,17 +8,17 @@ class Categorie
     {
         $this->setDb();
     }
-   
+
     public function setDb()
     {
-       
+
         $host = 'localhost';
         $dbname = 'blog';
         $user = 'root';
         $pass = '';
         $serveur = "mysql:host=$host;dbname=$dbname";
 
-        $pdo = new PDO($serveur,$user,$pass);
+        $pdo = new PDO($serveur, $user, $pass);
         $this->link = $pdo;
     }
 
@@ -28,21 +28,15 @@ class Categorie
      * @return string
      */
 
-    public function findAll() :string
+    public function findAll()
     {
         $SQL = ("SELECT nom FROM categories");
         $data = $this->link->query($SQL)->fetchAll(PDO::FETCH_ASSOC);
         $option = NULL;
-        foreach($data as $value)
-        {
-            $option .= "<option>".$value['nom']."</option>";
-            
-
-            
+        foreach ($data as $value) {
+            $option .= "<option>" . $value['nom'] . "</option>";
         }
         return $option;
-        
-        
     }
 
     /**
@@ -50,13 +44,11 @@ class Categorie
      * @return string 
      */
 
-    public function findId($article) 
+    public function findId($article)
     {
         $query = $this->link->prepare("SELECT id FROM categories WHERE nom = :nom");
         $query->execute(['nom' => $article]);
         $data = $query->fetch();
         return $data['id'];
     }
-
-
 }
