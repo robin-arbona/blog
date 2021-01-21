@@ -12,6 +12,9 @@ require_once('template/header.php');
 require_once('../classes/Categorie.php');
 require_once('../classes/Article.php');
 
+session_start();
+
+
 $modelCategorie = new Categorie;
 $modelArticle = new Article;
 
@@ -40,10 +43,10 @@ $modelArticle = new Article;
 
 
 
-if(isset($_POST['categorie']) && isset($_POST['titre']) && isset($_POST['article']))
+if(isset($_POST['categorie']) && isset($_POST['titre']) && isset($_POST['article']) && isset($_SESSION['id']))
 {
-    $id = $modelCategorie->findId($_POST['categorie']);
-    $modelArticle->createArticle($_POST['titre'],$_POST['article'],2,$id);
+    $IdCategorie = $modelCategorie->findId($_POST['categorie']);
+    $modelArticle->createArticle($_POST['titre'],$_POST['article'],$_SESSION['id'],$IdCategorie);
 }
 
 

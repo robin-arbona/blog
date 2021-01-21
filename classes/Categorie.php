@@ -28,7 +28,7 @@ class Categorie
      * @return string
      */
 
-    public function findAll() :string
+    public function findAll() 
     {
         $SQL = ("SELECT nom FROM categories");
         $data = $this->link->query($SQL)->fetchAll(PDO::FETCH_ASSOC);
@@ -40,14 +40,12 @@ class Categorie
 
             
         }
-        return $option;
-        
-        
+        return $option;    
     }
 
     /**
      * Retourne l'id d'une categorie donnée en parametre
-     * @return string 
+     * 
      */
 
     public function findId($article) 
@@ -56,6 +54,13 @@ class Categorie
         $query->execute(['nom' => $article]);
         $data = $query->fetch();
         return $data['id'];
+    }
+
+    public function addCategorie(string $categorie) :void
+    {
+       $SQL = $this->link->prepare("INSERT INTO categories(nom) VALUE(?)");
+       $SQL->execute([$categorie]);
+       
     }
 
 
