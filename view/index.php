@@ -25,7 +25,7 @@ require_once('template/header.php');
         <?php
         foreach ($articles as $article) { ?>
             <div class="col row justify-content-center my-5">
-                <a href="<?= $article->getLink() ?>" class="card m-3 no-text-decoration" style="width: 20rem;">
+                <a href="<?= $article->getLinkView() ?>" class="card m-3 no-text-decoration" style="width: 20rem;">
                     <img class="centered-and-cropped" src="<?= $article->getImgPth() ?>" class="card-img-top" alt="...">
 
                     <div class="card-body">

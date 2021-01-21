@@ -28,13 +28,14 @@ class Categorie
      * @return string
      */
 
-    public function findAll()
+    public function findAll($actual = NULL)
     {
-        $SQL = ("SELECT nom FROM categories");
+        $SQL = ("SELECT * FROM categories");
         $data = $this->link->query($SQL)->fetchAll(PDO::FETCH_ASSOC);
         $option = NULL;
         foreach ($data as $value) {
-            $option .= "<option>" . $value['nom'] . "</option>";
+            $selected = $actual == $value['id'] ? 'selected' : '';
+            $option .= "<option $selected >" . $value['nom'] . "</option>";
         }
         return $option;
     }
