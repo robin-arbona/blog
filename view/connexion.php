@@ -11,26 +11,12 @@ require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 require 'template/header.php';
 require '../classes/UserLogIn.php';
-<<<<<<< HEAD
-
-
-session_start();
-
 $user_connection = new UserLogIn();
 try {
     $user_connection->connection();
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-
-=======
-$user_connection = new UserLogIn();
-try {
-    $user_connection->connection();
-    }catch(Exception $e){
-        echo $e->getMessage();
-    }
->>>>>>> 4be9675302e18659cc2f0cd53caf2d9c65bc64b3
 ?>
 
 <form method="post">
