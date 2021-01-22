@@ -5,11 +5,15 @@ session_start();
  * Cette page possède un formulaire permettant à l’utilisateur de modifier 
  * l’ensemble de ses informations.
  */
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+
+
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+// require '../classes/Manager.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
 require 'template/header.php';
-require '../classes/ModifyProfilManager.php';
+// require '../classes/ModifyProfilManager.php';
 if (!isset($_SESSION['id'])) {
     header('Location: connexion.php');
 }

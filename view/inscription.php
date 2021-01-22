@@ -6,11 +6,13 @@ session_start();
  * remplit ce formulaire, les données sont insérées dans la base de
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+// require '../classes/Manager.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
 require 'template/header.php';
-require '../classes/UserSignUpManager.php';
+// require '../classes/UserSignUpManager.php';
 
 
 $user = new UserSignUpManager();

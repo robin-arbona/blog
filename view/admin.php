@@ -7,9 +7,12 @@
  * de catégories, d’utilisateurs, droits...)
  */
 
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+// require '../classes/Manager.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
 
 require_once('template/header.php');
 
