@@ -18,6 +18,9 @@ require '../classes/ArticlesEntity.php';
 require '../classes/UploadFileHandeler.php';
 
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
+if ($id_droits === 1) {
+    header('Location: connexion.php');
+}
 
 $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 
@@ -37,14 +40,14 @@ if (isset($_POST['add'])) {
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
 
     $modelArticle->createArticle($_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
-    $id_article = $modelArticle->getLastId();
+    $id_article = (int) $modelArticle->getLastId();
 
     new UploadFileHandeler($id_article);
 
     header("Location: article.php?id={$id_article}");
 } elseif (isset($_POST['update'])) {
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
-    $id_article = $_POST['id_article'];
+    $id_article = (int) $_POST['id_article'];
 
     $articlesManager->update($id_article, $_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
 
