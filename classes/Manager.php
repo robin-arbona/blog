@@ -5,8 +5,8 @@ class Manager
     protected $db;
     protected $host = 'localhost';
     protected $dbname = 'blog';
-    protected $login = 'root';
-    protected $password = '';
+    protected $login = 'phpmyadmin';
+    protected $password = 'lecam';
     protected $tableName;
     protected $entityName;
 
