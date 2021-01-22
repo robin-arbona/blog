@@ -73,7 +73,7 @@ class Categorie
      * Modifie le nom d'un categorie selectionné
      */
 
-    public function editCategorie(string $categorie, string $newCategorie) :void
+    public function edit(string $categorie, string $newCategorie) :void
     {
         $SQL = $this->link->prepare("UPDATE categories SET nom = ? WHERE nom = ?");
         $SQL->execute([$newCategorie,$categorie]);
@@ -83,7 +83,7 @@ class Categorie
      * Delete une categorie selectionné
      */
 
-    public function deleteCategorie(string $categorie) :void
+    public function delete(string $categorie) :void
     {
         $SQL = ("DELETE FROM categories WHERE nom = :nom ");
         $stmt = $this->link->prepare($SQL);
