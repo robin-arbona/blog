@@ -4,6 +4,12 @@
     height: 20rem;
 }
 
+.centered-and-cropped--height { 
+    object-fit: cover;
+    width: 100%;
+    height: 30rem;
+}
+
 .centered-and-cropped--small { 
     height: 10rem;
 }

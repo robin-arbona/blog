@@ -14,6 +14,7 @@ class Manager
     {
         $this->db = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->login, $this->password);
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->db->exec('SET NAMES utf8');
         $this->tableName = $this->getTableName();
         $this->entityName = $this->getEntityName();
     }
@@ -54,5 +55,16 @@ class Manager
     public function getEntityName()
     {
         return ucfirst($this->tableName) . 'Entity';
+    }
+
+    public function date(): string
+    {
+        return date("Y-m-d H:i:s");
+    }
+
+    public function delete($id)
+    {
+        $SQL = "DELETE FROM {$this->tableName} WHERE id = " . (int) $id;
+        $this->db->query($SQL);
     }
 }

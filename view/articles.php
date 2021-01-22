@@ -12,14 +12,17 @@
  * articles 11 à 15 ayant comme id_categorie 1).
  */
 
-$ARTICLES_PER_PAGE = 5;
-
+session_start();
 require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
 require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
+require '../classes/ArticlesManager.php';
+require '../classes/ArticlesEntity.php';
 require '../classes/PaginationManager.php';
+
+$ARTICLES_PER_PAGE = 5;
+
+$id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
 
 if (isset($_GET['start'])) {
     $offset = $_GET['start'];
@@ -35,11 +38,14 @@ if (isset($_GET['categorie'])) {
 
 $articlesManager = new ArticlesManager;
 $articles = $articlesManager->getArticlesList($offset, $ARTICLES_PER_PAGE, $categorie);
-
 $categoriesManager = new CategoriesManager;
 $categories = $categoriesManager->getAll();
-
 $paginationManager = new PaginationManager($offset, $ARTICLES_PER_PAGE, $categorie);
+
+
+if (isset($_GET['action']) && ($_GET['action'] == 'delete') && ($id_droits == 1337)) {
+    $articlesManager->delete($_GET['id']);
+}
 
 require_once('template/header.php');
 ?>
@@ -52,19 +58,29 @@ require_once('template/header.php');
         <a class="badge badge-primary" href="<?= $categorie->getLink() ?>"><?= $categorie->nom ?></a>
 
     <?php } ?>
-    <a class="badge badge-secondary" href="articles.php">No filter</a>
+    <a class="badge badge-secondary" href="articles.php">All</a>
 
     <?php
     foreach ($articles as $article) { ?>
-        <a href="<?= $article->getLink() ?>" class="row justify-content-center my-5 no-text-decoration">
+        <a href="<?= $article->getLinkView() ?>" class="row justify-content-center mt-5 no-text-decoration">
             <img class="col-12 col-sm-4 centered-and-cropped centered-and-cropped--small" src="<?= $article->getImgPth() ?>" class="col" alt="...">
 
             <div class="col-12 col-sm-8">
                 <h5 class="title"><?= $article->title ?> <span class="badge bg-secondary"><?= $article->categorie ?></span></h5>
                 <p class="text"><?= $article->getExtract() ?></p>
                 <p class="text"><small class="text-muted">Written by <?= $article->author ?> the <?= $article->date ?></small></p>
+
             </div>
         </a>
+        <?php
+        if ($id_droits == 1337) { ?>
+            <div class="row justify-content-end">
+                <?= $article->getBtnDelete() ?>
+                <?= $article->getBtnEdit() ?>
+            </div>
+            <hr>
+        <?php }
+        ?>
     <?php
     } ?>
 

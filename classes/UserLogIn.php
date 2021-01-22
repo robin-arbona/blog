@@ -5,13 +5,15 @@ class UserLogIn
     public function connection()
     {
         if (isset($_POST['sign-in'])) {
-            if (!empty($_POST['login'])) {
-            } else {
-                $error = 'Please write down your login';
+            $error = [];
+            if (empty($_POST['login'])) {
+                $error[] = 'Please write down your login';
             }
-            if (!empty($_POST['password'])) {
-            } else {
-                $error = 'Please write down your password';
+            if (empty($_POST['password'])) {
+                $error[] = 'Please write down your password';
+            }
+            if (!empty($error)) {
+                throw new Exception(implode(' ', $error));
             }
             $this->user_in_db();
         }
@@ -32,9 +34,9 @@ class UserLogIn
             if (password_verify($_POST['password'], $tab['password'])) {
                 $_SESSION['login'] = $tab['login'];
                 $_SESSION['id'] = $tab['id'];
-                $_SESSION['id_droits'] = $tab = ['id_droits'];
+                $_SESSION['id_droits'] = $tab['id_droits'];
 
-                header("Location: profil.php?login=" . $_SESSION['login']);
+                header("Location: articles.php");
             }
         }
     }

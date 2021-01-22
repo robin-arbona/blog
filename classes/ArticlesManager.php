@@ -30,4 +30,19 @@ class ArticlesManager extends Manager
 
         return $sth->fetchAll();
     }
+
+    public function update($id_article, $titre, $article, $id_utilisateur, $id_categorie)
+    {
+        $SQL = 'UPDATE `articles` 
+                SET `title`=:title,`article`=:article,`id_utilisateur`=:id_utilisateur,`id_categorie`=:id_categorie 
+                WHERE id=:id';
+        $sth = $this->db->prepare($SQL);
+        $sth->execute([
+            ':title' => $titre,
+            'article' => $article,
+            'id_utilisateur' => $id_utilisateur,
+            'id_categorie' => $id_categorie,
+            'id' => $id_article
+        ]);
+    }
 }

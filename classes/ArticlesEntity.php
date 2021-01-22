@@ -22,12 +22,22 @@ class ArticlesEntity
             $extract .= $articleTab[$i] . ' ';
         }
         $extract .= ' ...';
-        return $extract;
+        return strip_tags($extract);
     }
 
-    public function getLink()
+    public function getLinkView()
     {
         return 'article.php?id=' . $this->id;
+    }
+
+    public function getBtnDelete()
+    {
+        return "<a class='btn btn-danger col-1 m-1' href='articles.php?id={$this->id}&action=delete'>Delete</a>";
+    }
+
+    public function getBtnEdit()
+    {
+        return "<a class='btn btn-warning col-1 m-1' href='creer-article.php?id={$this->id}&action=edit'>Edit</a>";
     }
 
     public function getImgPth()

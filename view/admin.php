@@ -7,10 +7,12 @@
  * de catégories, d’utilisateurs, droits...)
  */
 
+require '../classes/Manager.php';
+require '../classes/CategoriesManager.php';
+require '../classes/CategoriesEntity.php';
+
 require_once('template/header.php');
-require_once('../classes/Admin.php');
 require_once('../classes/Categorie.php');
-$modelAdmin = new Admin;
 $modelCategorie = new Categorie;
 ?>
 <section>

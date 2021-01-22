@@ -3,12 +3,12 @@
 class UserSignUp
 {
 
-    public function insert_user()
+    public function insert_user($id_droits = 1)
     {
         $login = htmlspecialchars($_POST['login']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = htmlspecialchars($_POST['email']);
-
+        $id_droits =htmlspecialchars($_POST['power']);
 
         $dsn = 'mysql:dbname=blog;host=localhost';
         $user = 'phpmyadmin';
@@ -18,7 +18,7 @@ class UserSignUp
         $stmt->bindValue(':login', $login);
         $stmt->bindvalue(':password', $password);
         $stmt->bindValue(':email', $email);
-        $stmt->bindValue(':id_droits', 1);
+        $stmt->bindValue(':id_droits', $id_droits);
         $stmt->execute();
         $stmt->fetch(PDO::FETCH_OBJ);
     }
@@ -36,19 +36,19 @@ class UserSignUp
                     $error = [];
 
                     if (empty($login)) {
-                        $error[]= 'Please write down your login';//throw new Exception('Please write down your login');
+                        $error[]= 'Please write down your login';
                     }
                     if (empty($password)) {
-                        $error[]= 'Please write down your password';//throw new Exception('Please write down your password');
+                        $error[]= 'Please write down your password';
                     }
                     if (empty($password2)) {
-                        $error[] = 'Please confirm your password';//throw new Exception('Please confirm your password');
+                        $error[] = 'Please confirm your password';
                     }
                     if (empty($email)) {
-                        $error[] = 'Please write down your email';//throw new Exception('Please write down your email');
+                        $error[] = 'Please write down your email';
                     }
                     if (empty($email2)) {
-                       $error[] = 'Please confirm your email';//throw new Exception('Please confirm your email');
+                       $error[] = 'Please confirm your email';
                     }
                     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     $password2 = password_verify($_POST['password2'], $password);
