@@ -20,16 +20,14 @@ try {
 ?>
 
 <form method="post">
-    <div class="row d-flex justify-content-center">
-        <div class=" col mb-3 ml-3">
+        <div class=" mt-5 mb-3 d-flex justify-content-center">
             <label for="login" class="form-label">Login</label>
-            <input name="login" type="text" class="form-control" id="login">
+            <input name="login" type="text" class="form-control w-25" id="login">
         </div>
-        <div class=" col mb-3 mr-3">
-            <label for="InputPassword" class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" id="InputPassword">
+        <div class=" mt-5 mb-3 d-flex justify-content-center">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control w-25" id="password">
         </div>
-    </div>
     <div class="d-flex justify-content-center">
         <button name="sign-in" type="submit" class="btn btn-primary ml-5 mb-5">Sign in</button>
     </div>

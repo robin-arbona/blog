@@ -36,7 +36,7 @@ class UserLogIn
                 $_SESSION['id'] = $tab['id'];
                 $_SESSION['id_droits'] = $tab['id_droits'];
 
-                header("Location: profil.php");
+                header("Location: articles.php");
             }
         }
     }
