@@ -44,6 +44,19 @@ class Categorie
     }
 
     /**
+     * Retourne une categorie selectionner dans un tableau
+     */
+
+    public function findSelected(array $tab)
+    {
+        foreach( $tab as $key => $value)
+        {
+            $categorie = $value['categorie'];
+        }
+        return $categorie;
+    }
+
+    /**
      * Retourne l'id d'une categorie donnée en parametre
      * 
      */
@@ -54,6 +67,28 @@ class Categorie
         $query->execute(['nom' => $article]);
         $data = $query->fetch();
         return $data['id'];
+    }
+
+    /**
+     * Modifie le nom d'un categorie selectionné
+     */
+
+    public function editCategorie(string $categorie, string $newCategorie) :void
+    {
+        $SQL = $this->link->prepare("UPDATE categories SET nom = ? WHERE nom = ?");
+        $SQL->execute([$newCategorie,$categorie]);
+    }
+
+    /**
+     * Delete une categorie selectionné
+     */
+
+    public function deleteCategorie(string $categorie) :void
+    {
+        $SQL = ("DELETE FROM categories WHERE nom = :nom ");
+        $stmt = $this->link->prepare($SQL);
+        $stmt->bindValue(':nom', $categorie);
+        $stmt->execute();
     }
 
     public function addCategorie(string $categorie) :void
