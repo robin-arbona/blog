@@ -47,6 +47,19 @@ $modelCategorie = new Categorie;
         <button name="delete" type="submit" class="btn btn-primary">Delete</button>
         </form>
     </div>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdd" aria-expanded="false" aria-controls="collapseAdd">
+        Add Categorie
+        </button>
+    </p>
+    <div class="collaps" id="collapseAdd">
+        <form method='post' action='admin.php' class="card card-body">
+            <label for="categorie">Categorie :
+                <input class='form-control' type="text" name="categorie">
+            </label>
+        <button name="add" type="submit" class="btn btn-primary">Ajout</button>
+        </form>
+    </div>
   
 </section>
 <?php
@@ -57,9 +70,9 @@ if(isset($_POST['edit']))
     
     $categorie = $modelCategorie->findselected($tab);
 
-    $newCategorie = $_POST['edite_categorie'];
+    $edited = $_POST['edite_categorie'];
 
-    $modelCategorie->editCategorie($categorie,$newCategorie);
+    $modelCategorie->edit($categorie,$newCategorie);
 
     
 }
@@ -67,7 +80,14 @@ elseif(isset($_POST['delete']))
 {
     $tab[] = $_POST;
     $categorie = $modelCategorie->findselected($tab);
-    $modelCategorie->deleteCategorie($categorie);
+    $modelCategorie->delete($categorie);
+
+}
+elseif(isset($_POST['add']))
+{
+    $newCategorie = $_POST['categorie'];
+    $modelCategorie->add($newCategorie);
+
 
 }
 

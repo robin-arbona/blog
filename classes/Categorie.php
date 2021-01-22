@@ -91,7 +91,7 @@ class Categorie
         $stmt->execute();
     }
 
-    public function addCategorie(string $categorie) :void
+    public function add(string $categorie) :void
     {
        $SQL = $this->link->prepare("INSERT INTO categories(nom) VALUE(?)");
        $SQL->execute([$categorie]);
