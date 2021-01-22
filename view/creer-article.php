@@ -32,8 +32,11 @@ if (isset($_GET['action']) && ($_GET['action'] == 'edit') && ($id_droits == 1337
 
 
 if (isset($_POST['add'])) {
+    var_dump($_POST);
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
     $modelArticle->createArticle($_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
+    $imgPath = dirname(__FILE__) . "/article_mainpic_{$modelArticle->getLastId()}.jpg";
+    move_uploaded_file($_POST["article_mainpic_.jpg"], $imgPath);
 } elseif (isset($_POST['update'])) {
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
     $articlesManager->update($_POST['id_article'], $_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
@@ -43,7 +46,7 @@ if (isset($_POST['add'])) {
 
 ?>
 <section id='createarticle-section'>
-    <form id='createarticle-form' method="post" action="creer-article.php">
+    <form enctype="multipart/form-data" id='createarticle-form' method="post" action="creer-article.php">
         <div id='createarticle-top'>
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
@@ -54,6 +57,7 @@ if (isset($_POST['add'])) {
                 <input class="form-control" type="text" placeholder="Titre" name="titre" value='<?= $edition ? $article->title : '' ?>'>
             </label>
         </div>
+        <input type="file" name="article_mainpic_.jpg" />
         <label id='createarticle-center' for="article">
             <textarea class="edit" id="article" name="article"><?= $edition ? $article->article : '' ?></textarea>
         </label>

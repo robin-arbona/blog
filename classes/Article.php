@@ -8,30 +8,27 @@ class Article
     {
         $this->setDb();
     }
-   
+
     public function setDb()
     {
-       
+
         $host = 'localhost';
         $dbname = 'blog';
         $user = 'root';
         $pass = '';
         $serveur = "mysql:host=$host;dbname=$dbname";
 
-        $pdo = new PDO($serveur,$user,$pass);
+        $pdo = new PDO($serveur, $user, $pass);
         $this->link = $pdo;
     }
 
     public function checklink()
     {
-        try
-        {
+        try {
             $this->link;
             echo 'Connexion établie petit peruche';
-        }
-        catch(PDOExecption $e)
-        {
-            echo 'ERREUR : '.$e->getMessage();
+        } catch (PDOExecption $e) {
+            echo 'ERREUR : ' . $e->getMessage();
         }
     }
 
@@ -40,7 +37,7 @@ class Article
      * @return string
      */
 
-    public function date() :string
+    public function date(): string
     {
         return date("Y-m-d H:i:s");
     }
@@ -49,25 +46,25 @@ class Article
      * Ajoute un article en bdd
      */
 
-    public function createArticle(string $title, string $article, int $id_utilisateur, int $id_categorie) :void
+    public function createArticle(string $title, string $article, int $id_utilisateur, int $id_categorie): void
     {
         $SQL = $this->link->prepare("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
-        $SQL->execute([$title,$article,$id_utilisateur,$id_categorie,$this->date()]);
-        
+        $SQL->execute([$title, $article, $id_utilisateur, $id_categorie, $this->date()]);
     }
 
     /**
      * Ajoute un commentaire en bdd
      */
 
-    public function addComment(string $commentaire, int $id_article, int $id_utilisateur) :void
+    public function addComment(string $commentaire, int $id_article, int $id_utilisateur): void
     {
-   
-       $SQL = $this->link->prepare("INSERT INTO commentaires(commentaire, id_article, id_utilisateur, date) VALUE(?, ?, ?, ?)");
-       $SQL->execute([$commentaire, $id_article, $id_utilisateur, $this->date()]);
-       
+
+        $SQL = $this->link->prepare("INSERT INTO commentaires(commentaire, id_article, id_utilisateur, date) VALUE(?, ?, ?, ?)");
+        $SQL->execute([$commentaire, $id_article, $id_utilisateur, $this->date()]);
     }
 
-    
-
+    public function getLastId()
+    {
+        return $this->link->lastInsertId();
+    }
 }

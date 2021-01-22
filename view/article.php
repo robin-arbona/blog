@@ -29,7 +29,6 @@ $article = $articlesManager->getById($id);
 
 $commentairesManager = new CommentairesManager;
 
-
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
 
 if (isset($_POST['commentaire'])) {
@@ -50,9 +49,17 @@ require_once('template/header.php');
 ?>
 
 <div class="container">
-    <img class="img-fluid" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" alt="...">
+    <img class="centered-and-cropped--height" src="../public/image/article_mainpic_<?= $article->id ?>.jpg" alt="...">
     <h1 class="display-1 mt-5 mb-0"><?= $article->title; ?></h1>
     <p><?= $article->article; ?></p>
+    <?php
+    if ($id_droits == 1337) { ?>
+        <div class="row justify-content-end">
+            <?= $article->getBtnDelete() ?>
+            <?= $article->getBtnEdit() ?>
+        </div>
+        <hr>
+    <?php } ?>
 
     <h2>Commentaires</h2>
     <div class="row justify-content-center">
