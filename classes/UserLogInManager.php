@@ -1,5 +1,5 @@
 <?php
-class UserLogIn
+class UserLogInManager extends Manager
 {
 
     public function connection()
@@ -22,11 +22,7 @@ class UserLogIn
     public function user_in_db()
     {
 
-        $dsn = 'mysql:dbname=blog;host=localhost';
-        $user = 'phpmyadmin';
-        $pass = 'lecam';
-        $db = new PDO($dsn, $user, $pass);
-        $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE login =?");
+        $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE login =?");
         $stmt->bindValue(1, $_POST['login']);
         $stmt->execute();
         $tab = $stmt->fetch(PDO::FETCH_ASSOC);

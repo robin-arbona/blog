@@ -1,20 +1,18 @@
 <?php
 
-class UserSignUp
+class UserSignUpManager extends Manager
 {
 
-    public function insert_user($id_droits = 1)
+    public function insert_user()
     {
         $login = htmlspecialchars($_POST['login']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = htmlspecialchars($_POST['email']);
-        $id_droits =htmlspecialchars($_POST['power']);
+        $id_droits = '1';
 
-        $dsn = 'mysql:dbname=blog;host=localhost';
-        $user = 'phpmyadmin';
-        $pass = 'lecam';
-        $db = new PDO($dsn, $user, $pass);
-        $stmt = $db->prepare("INSERT INTO utilisateurs(login, password, email, id_droits) VALUES (:login,:password,:email,:id_droits)");
+
+
+        $stmt = $this->db->prepare("INSERT INTO utilisateurs(login, password, email, id_droits) VALUES (:login,:password,:email,:id_droits)");
         $stmt->bindValue(':login', $login);
         $stmt->bindvalue(':password', $password);
         $stmt->bindValue(':email', $email);

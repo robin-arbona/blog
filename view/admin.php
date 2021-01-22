@@ -12,8 +12,8 @@ require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 
 require_once('template/header.php');
-require_once('../classes/Categorie.php');
-$modelCategorie = new Categorie;
+
+$modelCategorie = new CategoriesManager();
 ?>
 <section>
     <p>
@@ -74,7 +74,7 @@ if(isset($_POST['edit']))
 
     $edited = $_POST['edite_categorie'];
 
-    $modelCategorie->edit($categorie,$newCategorie);
+    $modelCategorie->edit($categorie,$edited);
 
     
 }

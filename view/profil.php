@@ -9,11 +9,11 @@ require '../classes/Manager.php';
 require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 require 'template/header.php';
-require '../classes/ModifyProfil.php';
+require '../classes/ModifyProfilManager.php';
 if (!isset($_SESSION['id'])) {
     header('Location: connexion.php');
 }
-$modify = new ModifyProfil();
+$modify = new ModifyProfilManager();
 try {
     $modify->modify_user();
 } catch (Exception $e) {

@@ -5,8 +5,8 @@ class Manager
     protected $db;
     protected $host = 'localhost';
     protected $dbname = 'blog';
-    protected $login = 'phpmyadmin';
-    protected $password = 'lecam';
+    protected $login = 'root';
+    protected $password = '';
     protected $tableName;
     protected $entityName;
 
@@ -66,5 +66,10 @@ class Manager
     {
         $SQL = "DELETE FROM {$this->tableName} WHERE id = " . (int) $id;
         $this->db->query($SQL);
+    }
+
+    public function getLastId()
+    {
+        return $this->db->lastInsertId();
     }
 }

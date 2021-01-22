@@ -10,8 +10,8 @@ require '../classes/Manager.php';
 require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 require 'template/header.php';
-require '../classes/UserLogIn.php';
-$user_connection = new UserLogIn();
+require '../classes/UserLogInManager.php';
+$user_connection = new UserLogInManager();
 try {
     $user_connection->connection();
 } catch (Exception $e) {

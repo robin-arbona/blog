@@ -11,8 +11,6 @@ require '../classes/Manager.php';
 require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 require_once('template/header.php');
-require_once('../classes/Categorie.php');
-require_once('../classes/Article.php');
 require '../classes/ArticlesManager.php';
 require '../classes/ArticlesEntity.php';
 require '../classes/UploadFileHandeler.php';
@@ -24,8 +22,8 @@ if ($id_droits === 1) {
 
 $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 
-$modelCategorie = new Categorie;
-$modelArticle = new Article;
+$modelCategorie = new CategoriesManager();
+$modelArticle = new ArticlesManager();
 $articlesManager = new ArticlesManager;
 
 $edition = false;

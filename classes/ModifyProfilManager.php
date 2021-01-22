@@ -1,6 +1,6 @@
 <?php
 
-class ModifyProfil
+class ModifyProfilManager extends Manager
 {
     public function modify_user()
     {
@@ -38,17 +38,13 @@ class ModifyProfil
                 if (!empty($error)) {
                     throw new Exception(implode('', $error));
                 }
-                $dsn = 'mysql:dbname=blog;host=localhost';
-                $user = 'root';
-                $pass = '';
-                $db = new PDO($dsn, $user, $pass);
 
-                $stmt = $db->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+                $stmt = $this->db->prepare("SELECT * FROM utilisateurs WHERE id = :id");
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
 
                 if ($stmt->rowCount() == 1) {
-                    $query = $db->prepare("UPDATE utilisateurs SET login = :login, password = :password, email = :email, id_droits = :id_droits WHERE id= :id");
+                    $query = $this->db->prepare("UPDATE utilisateurs SET login = :login, password = :password, email = :email, id_droits = :id_droits WHERE id= :id");
                     $query->bindValue(':login', $login);
                     $query->bindValue(':password', $password);
                     $query->bindValue(':email', $email);

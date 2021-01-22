@@ -45,4 +45,16 @@ class ArticlesManager extends Manager
             'id' => $id_article
         ]);
     }
+
+    /**
+     * Ajoute un article en bdd
+     * @param string $title titre de l'article
+     * @return void
+     */
+
+    public function createArticle(string $title, string $article, int $id_utilisateur, int $id_categorie): void
+    {
+        $SQL = $this->db->prepare("INSERT INTO articles(title,article,id_utilisateur,id_categorie,date) VALUE(? , ?, ?, ?, ?)");
+        $SQL->execute([$title, $article, $id_utilisateur, $id_categorie, $this->date()]);
+    }
 }

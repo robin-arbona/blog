@@ -10,10 +10,10 @@ require '../classes/Manager.php';
 require '../classes/CategoriesManager.php';
 require '../classes/CategoriesEntity.php';
 require 'template/header.php';
-require '../classes/UserSignUp.php';
+require '../classes/UserSignUpManager.php';
 
 
-$user = new UserSignUp();
+$user = new UserSignUpManager();
 if (isset($_POST['sign-up']))
     try {
         $user->new_user();
