@@ -31,8 +31,8 @@ if (isset($_POST['sign-up']))
     <div class="d-flex justify-content-center">
         <div class="row">
             <div class="mb-3 ml-3">
-                <label for="InputPassword" class="form-label">Password</label>
-                <input name="password" type="password" class="form-control" id="InputPassword">
+                <label for="password" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" id="password">
             </div>
             <div class="mb-3 ml-3">
                 <label for="Password2" class="form-label"> Please confirm your password </label>
@@ -52,7 +52,7 @@ if (isset($_POST['sign-up']))
             </div>
         </div>
     </div>
-    <?php if($_SESSION['id_droits'] == 1337){ ?>
+    <?php if (isset($_SESSION['id_droits']) && ($_SESSION['id_droits'] == 1337)){ ?>
     <div class="mb-3 ml-3 d-flex justify-content-center">
         <select name="power">
             <option>--utilisateur--modérateur--administrateur</option>
