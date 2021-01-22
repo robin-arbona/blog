@@ -15,6 +15,7 @@ require_once('../classes/Categorie.php');
 require_once('../classes/Article.php');
 require '../classes/ArticlesManager.php';
 require '../classes/ArticlesEntity.php';
+require '../classes/UploadFileHandeler.php';
 
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
 
@@ -23,6 +24,7 @@ $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 $modelCategorie = new Categorie;
 $modelArticle = new Article;
 $articlesManager = new ArticlesManager;
+
 $edition = false;
 
 if (isset($_GET['action']) && ($_GET['action'] == 'edit') && ($id_droits == 1337)) {
@@ -33,22 +35,22 @@ if (isset($_GET['action']) && ($_GET['action'] == 'edit') && ($id_droits == 1337
 
 if (isset($_POST['add'])) {
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
+
     $modelArticle->createArticle($_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
-    $dirRoot = str_replace('/view', '', dirname(__FILE__));
-    $imgPath = $dirRoot . "/public/image/article_mainpic_{$modelArticle->getLastId()}.jpg";
-    move_uploaded_file($_FILES["article_mainpic"]["tmp_name"], $imgPath);
-    header("Location: article.php?id={$modelArticle->getLastId()}");
+    $id_article = $modelArticle->getLastId();
+
+    new UploadFileHandeler($id_article);
+
+    header("Location: article.php?id={$id_article}");
 } elseif (isset($_POST['update'])) {
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
-    $articlesManager->update($_POST['id_article'], $_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
-    var_dump($_FILES);
-    if (strlen($_FILES["article_mainpic"]["tmp_name"]) !== 0) {
-        $dirRoot = str_replace('/view', '', realpath(dirname(__FILE__)));
-        $imgPath = $dirRoot . "/public/image/article_mainpic_{$_POST['id_article']}.jpg";
-        unlink($imgPath);
-        move_uploaded_file($_FILES["article_mainpic"]["tmp_name"], $imgPath);
-    }
-    header("Location: article.php?id={$_POST['id_article']}");
+    $id_article = $_POST['id_article'];
+
+    $articlesManager->update($id_article, $_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
+
+    new UploadFileHandeler($id_article);
+
+    header("Location: article.php?id={$id_article}");
 }
 
 
