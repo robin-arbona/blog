@@ -16,8 +16,8 @@ spl_autoload_register('myautoload');
 
 require_once('template/header.php');
 
-$modelCategorie = new CategoriesManager();
-$modeluser = new Test();
+$modelAdmin = new Admin;
+$modelAdmin->form();
 ?>
 <section>
     <p>
@@ -29,7 +29,7 @@ $modeluser = new Test();
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
-                    <?= $modelCategorie->findAll()?>
+                    <?= $modelAdmin->findAll()?>
                 </select>
             </label>
             <label for="edite_categorie">
@@ -47,7 +47,7 @@ $modeluser = new Test();
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
-                    <?= $modelCategorie->findAll()?>
+                    <?= $modelAdmin->findAll()?>
                 </select>
             </label>
         <button name="delete" type="submit" class="btn btn-primary">Delete</button>
@@ -75,54 +75,68 @@ $modeluser = new Test();
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">User :
                 <select class="form-control" id="categorie" name="categorie">
-                <?= $modeluser->allUser()?>
+                <?= $modelAdmin->allUser()?>
                     
                 </select>
             </label>
-        <button name="edit_user" value='go' type="submit" class="btn btn-primary">Delete</button>
+        <button name="edit_user" value='go' type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#createuser" aria-expanded="false" aria-controls="createuser">
+        Create Users
+        </button>
+    </p>
+    <div class="collapse" id="createuser">
+        <form method='post' action='admin.php' class="card card-body">
+        <button name="creatuser" value='create' type="submit" class="btn btn-primary">Go</button>
         </form>
     </div>
   
 </section>
 <?php
-if(isset($_POST['edit']))
-{
+// if(isset($_POST['edit']))
+// {
     
-    $tab[] = $_POST;
+//     $tab[] = $_POST;
     
-    $categorie = $modelCategorie->findselected($tab);
+//     $categorie = $modelCategorie->findselected($tab);
 
-    $edited = $_POST['edite_categorie'];
+//     $edited = $_POST['edite_categorie'];
 
-    $modelCategorie->edit($categorie,$edited);
+//     $modelCategorie->edit($categorie,$edited);
 
     
-}
-elseif(isset($_POST['delete']))
-{
-    $tab[] = $_POST;
-    $categorie = $modelCategorie->findselected($tab);
-    $modelCategorie->delete($categorie);
+// }
+// elseif(isset($_POST['delete']))
+// {
+//     $tab[] = $_POST;
+//     $categorie = $modelCategorie->findselected($tab);
+//     $modelCategorie->delete($categorie);
 
-}
-elseif(isset($_POST['add']))
-{
-    $newCategorie = $_POST['categorie'];
-    $modelCategorie->add($newCategorie);
+// }
+// elseif(isset($_POST['add']))
+// {
+//     $newCategorie = $_POST['categorie'];
+//     $modelCategorie->add($newCategorie);
 
 
-}
-elseif(isset($_POST['edit_user']))
-{
-    $tab[] = $_POST;
-    $user = $modelCategorie->findselected($tab);
-    $edit = $modeluser->edituser($user);
-    if(!empty($edit) )
-    {
-        header('Location:profil.php');
-    }
+// }
+// elseif(isset($_POST['edit_user']))
+// {
+//     $tab[] = $_POST;
+//     $user = $modelCategorie->findselected($tab);
+//     $edit = $modeluser->edituser($user);
+//     if(!empty($edit) )
+//     {
+//         header('Location:profil.php');
+//     }
     
-}
+// }
+// elseif(isset($_POST['creatuser']))
+// {
+//     header('Location:inscription.php');
+// }
 
 require_once('template/footer.php');
 ?>

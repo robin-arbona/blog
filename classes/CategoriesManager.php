@@ -21,6 +21,7 @@ class CategoriesManager extends Manager
 
     /**
      * Retourne une categorie selectionner dans un tableau
+     * @return string
      */
 
     public function findSelected(array $tab)
