@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * * - Une page d’administration (admin.php) :
  * Cette page permet aux administrateurs de gérer l’ensemble du site
@@ -17,6 +17,7 @@ spl_autoload_register('myautoload');
 require_once('template/header.php');
 
 $modelCategorie = new CategoriesManager();
+$modeluser = new Test();
 ?>
 <section>
     <p>
@@ -42,7 +43,7 @@ $modelCategorie = new CategoriesManager();
         Delete Categorie
         </button>
     </p>
-    <div class="collaps" id="collapseDelete">
+    <div class="collapse" id="collapseDelete">
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
@@ -57,12 +58,28 @@ $modelCategorie = new CategoriesManager();
         Add Categorie
         </button>
     </p>
-    <div class="collaps" id="collapseAdd">
+    <div class="collapse" id="collapseAdd">
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <input class='form-control' type="text" name="categorie">
             </label>
         <button name="add" type="submit" class="btn btn-primary">Ajout</button>
+        </form>
+    </div>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edituser" aria-expanded="false" aria-controls="edituser">
+        Edit Users
+        </button>
+    </p>
+    <div class="collapse" id="edituser">
+        <form method='post' action='admin.php' class="card card-body">
+            <label for="categorie">User :
+                <select class="form-control" id="categorie" name="categorie">
+                <?= $modeluser->allUser()?>
+                    
+                </select>
+            </label>
+        <button name="edit_user" value='go' type="submit" class="btn btn-primary">Delete</button>
         </form>
     </div>
   
@@ -94,6 +111,17 @@ elseif(isset($_POST['add']))
     $modelCategorie->add($newCategorie);
 
 
+}
+elseif(isset($_POST['edit_user']))
+{
+    $tab[] = $_POST;
+    $user = $modelCategorie->findselected($tab);
+    $edit = $modeluser->edituser($user);
+    if(!empty($edit) )
+    {
+        header('Location:profil.php');
+    }
+    
 }
 
 require_once('template/footer.php');

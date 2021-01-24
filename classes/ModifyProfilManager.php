@@ -7,6 +7,15 @@ class ModifyProfilManager extends Manager
         if (isset($_SESSION['id'])) {
             if (isset($_POST['update'])) {
                 $id = $_SESSION['id'];
+                if(isset($_POST['power']))
+                {
+                    $droit = $_POST['power'];
+                }                                 //Ajout pour admin
+                else
+                {
+                    $droit = 1;
+                }
+                
                 $login = htmlspecialchars($_POST['login']);
                 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 $password2 = password_verify($_POST['password2'], $password);
@@ -48,7 +57,7 @@ class ModifyProfilManager extends Manager
                     $query->bindValue(':login', $login);
                     $query->bindValue(':password', $password);
                     $query->bindValue(':email', $email);
-                    $query->bindValue(':id_droits', 1);
+                    $query->bindValue(':id_droits', $droit);
                     $query->bindValue(':id', $id);
                     $query->execute();
                 }
