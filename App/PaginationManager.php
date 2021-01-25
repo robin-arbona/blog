@@ -1,5 +1,8 @@
 <?php
 
+use core\Manager;
+
+
 class PaginationManager extends Manager
 {
     protected $articleNb;
@@ -13,7 +16,6 @@ class PaginationManager extends Manager
 
     public function __construct(int $offset, int $limit = 5, $categorie = NULL)
     {
-        parent::__construct();
         $this->offset = $offset;
         $this->limit = $limit;
         $this->categorie = $categorie;

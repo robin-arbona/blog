@@ -1,5 +1,8 @@
 <?php
 
+use core\Manager;
+
+
 class CategoriesManager extends Manager
 {
     /**
@@ -25,8 +28,7 @@ class CategoriesManager extends Manager
 
     public function findSelected(array $tab)
     {
-        foreach( $tab as $key => $value)
-        {
+        foreach ($tab as $key => $value) {
             $categorie = $value['categorie'];
         }
         return $categorie;
@@ -49,17 +51,17 @@ class CategoriesManager extends Manager
      * Modifie le nom d'un categorie selectionné
      */
 
-    public function edit(string $categorie, string $newCategorie) :void
+    public function edit(string $categorie, string $newCategorie): void
     {
         $SQL = $this->db->prepare("UPDATE categories SET nom = ? WHERE nom = ?");
-        $SQL->execute([$newCategorie,$categorie]);
+        $SQL->execute([$newCategorie, $categorie]);
     }
 
     /**
      * Delete une categorie selectionné
      */
 
-    public function delete( $categorie)
+    public function delete($categorie)
     {
         $SQL = ("DELETE FROM categories WHERE nom = :nom ");
         $stmt = $this->db->prepare($SQL);
@@ -67,10 +69,9 @@ class CategoriesManager extends Manager
         $stmt->execute();
     }
 
-    public function add(string $categorie) :void
+    public function add(string $categorie): void
     {
         $SQL = $this->db->prepare("INSERT INTO categories(nom) VALUE(?)");
         $SQL->execute([$categorie]);
-
     }
 }

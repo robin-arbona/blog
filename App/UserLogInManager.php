@@ -1,4 +1,7 @@
 <?php
+
+use core\Manager;
+
 class UserLogInManager extends Manager
 {
 

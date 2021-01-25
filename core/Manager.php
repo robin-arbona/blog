@@ -1,27 +1,38 @@
 <?php
 
-class Manager
+namespace core;
+
+use \PDO;
+
+/**
+ * Class manager is used to extends each manager:
+ * -One manager match to one table in db and spelling 
+ * has to be identic to use general method or tablename has to be specified
+ * -Link to PDO in construct process is expeced
+ * -Entity class matching to manager has to be created
+ * ex: (table in db) --> users, (class manager) --> UsersManager, (class entity) --> UsersEntity
+ */
+abstract class Manager
 {
     protected $db;
-    protected $host = 'localhost';
-    protected $dbname = 'blog';
-    protected $login = 'root';
-    protected $password = '';
     protected $tableName;
     protected $entityName;
 
+
     /**
-     * 
+     * link to with db using PDO is expected
      */
-    public function __construct()
+    public function __construct(PDO $db)
     {
-        $this->db = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->login, $this->password);
-        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->db->exec('SET NAMES utf8');
+        $this->db = $db;
+
         $this->tableName = $this->getTableName();
         $this->entityName = $this->getEntityName();
     }
 
+    /** 
+     * Get the last X entry in table, en array of object is returned.
+     */
     public function getLast($number = 1)
     {
         $SQL = "SELECT * FROM {$this->tableName} ORDER BY id DESC LIMIT " . (int) $number;
@@ -31,6 +42,9 @@ class Manager
         return $sth->fetchAll();
     }
 
+    /**
+     * Get All the entry, an array of object is returned.
+     */
     public function getAll()
     {
         $SQL = "SELECT * FROM {$this->tableName};";
@@ -41,6 +55,9 @@ class Manager
     }
 
 
+    /**
+     * Get one entry matching to the $id
+     */
     public function getById($id)
     {
         $SQL = "SELECT * FROM {$this->tableName} WHERE id = " . (int) $id;
@@ -50,27 +67,42 @@ class Manager
         return $sth->fetch();
     }
 
+    /**
+     * Return table name, based on naming convention
+     */
     public function getTableName()
     {
         return strtolower(str_replace('Manager', '', get_class($this)));
     }
 
+    /**
+     * Return entity name classes, based on naming convention
+     */
     public function getEntityName()
     {
         return ucfirst($this->tableName) . 'Entity';
     }
 
+    /**
+     * Return the date
+     */
     public function date(): string
     {
         return date("Y-m-d H:i:s");
     }
 
+    /**
+     * Delete on entry
+     */
     public function delete($id)
     {
         $SQL = "DELETE FROM {$this->tableName} WHERE id = " . (int) $id;
         $this->db->query($SQL);
     }
 
+    /**
+     * Return the matching id of the last entry in db
+     */
     public function getLastId()
     {
         return $this->db->lastInsertId();

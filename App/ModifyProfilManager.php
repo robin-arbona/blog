@@ -1,5 +1,8 @@
 <?php
 
+use core\Manager;
+
+
 class ModifyProfilManager extends Manager
 {
     public function modify_user()

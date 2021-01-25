@@ -1,5 +1,7 @@
 <?php
 
+use core\Manager;
+
 class ArticlesManager extends Manager
 {
     public function getArticlesList(int $offset, int $limit = 5, $categorie = NULL)

@@ -1,5 +1,7 @@
 <?php
 
+use core\Manager;
+
 class CommentairesManager extends Manager
 {
     public function getAllByArticleId(int $id_article)
