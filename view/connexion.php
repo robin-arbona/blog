@@ -25,6 +25,7 @@ require_once('template/header.php');
 
 ?>
 
+?>
 <form method="post">
     <div class="d-flex justify-content-center">
         <div class="row">

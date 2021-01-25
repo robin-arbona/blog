@@ -81,9 +81,13 @@ $categories = $categoriesManager->getAll();
                         <a class="dropdown-item" href="creer-article.php">Nouvel article</a>
                     </div>
                 </li>
+                <?php if(isset($_SESSION['id_droits']) && $_SESSION['id_droits'] == 1337){ ?>
+
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Admin</a>
+                    <a class="nav-link" href="admin.php">Admin</a>
                 </li>
+
+               <?php } ?>
             </ul>
         </nav>
     </header>
