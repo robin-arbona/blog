@@ -26,9 +26,10 @@ class CategoriesManager extends Manager
 
     /**
      * Retourne une categorie selectionner dans un tableau
+     * @return string
      */
 
-    public function findSelected(array $tab)
+    public function findSelected(array $tab): string
     {
         foreach ($tab as $key => $value) {
             $categorie = $value['categorie'];
@@ -38,10 +39,10 @@ class CategoriesManager extends Manager
 
     /**
      * Retourne l'id d'une categorie donnée en parametre
-     *
+     *@return string
      */
 
-    public function findId($article)
+    public function findId($article): string
     {
         $query = $this->db->prepare("SELECT id FROM categories WHERE nom = :nom");
         $query->execute(['nom' => $article]);
@@ -51,6 +52,7 @@ class CategoriesManager extends Manager
 
     /**
      * Modifie le nom d'un categorie selectionné
+     * @return void
      */
 
     public function edit(string $categorie, string $newCategorie): void
@@ -61,6 +63,7 @@ class CategoriesManager extends Manager
 
     /**
      * Delete une categorie selectionné
+     * @return void
      */
 
     public function delete($categorie)
@@ -71,6 +74,10 @@ class CategoriesManager extends Manager
         $stmt->execute();
     }
 
+    /**
+     * Ajout d'une categorie dans base de donnée
+     * @return void
+     */
     public function add(string $categorie): void
     {
         $SQL = $this->db->prepare("INSERT INTO categories(nom) VALUE(?)");

@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * * - Une page d’administration (admin.php) :
  * Cette page permet aux administrateurs de gérer l’ensemble du site
@@ -13,9 +13,12 @@ use App\Manager\CategoriesManager;
 require '../App/App.php';
 $App = new App();
 
+$modelCategorie = new CategoriesManager($App->getDb());
+
 require_once('template/header.php');
 
-$modelCategorie = new CategoriesManager($App->getDb());
+$modelAdmin = new Admin;
+$modelAdmin->form();
 ?>
 <section>
     <p>
@@ -41,7 +44,7 @@ $modelCategorie = new CategoriesManager($App->getDb());
             Delete Categorie
         </button>
     </p>
-    <div class="collaps" id="collapseDelete">
+    <div class="collapse" id="collapseDelete">
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
@@ -56,7 +59,7 @@ $modelCategorie = new CategoriesManager($App->getDb());
             Add Categorie
         </button>
     </p>
-    <div class="collaps" id="collapseAdd">
+    <div class="collapse" id="collapseAdd">
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <input class='form-control' type="text" name="categorie">
@@ -64,26 +67,77 @@ $modelCategorie = new CategoriesManager($App->getDb());
             <button name="add" type="submit" class="btn btn-primary">Ajout</button>
         </form>
     </div>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#edituser" aria-expanded="false" aria-controls="edituser">
+            Edit Users
+        </button>
+    </p>
+    <div class="collapse" id="edituser">
+        <form method='post' action='admin.php' class="card card-body">
+            <label for="categorie">User :
+                <select class="form-control" id="categorie" name="categorie">
+                    <?= $modelAdmin->allUser() ?>
+
+                </select>
+            </label>
+            <button name="edit_user" value='go' type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+    <p>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#createuser" aria-expanded="false" aria-controls="createuser">
+            Create Users
+        </button>
+    </p>
+    <div class="collapse" id="createuser">
+        <form method='post' action='admin.php' class="card card-body">
+            <button name="creatuser" value='create' type="submit" class="btn btn-primary">Go</button>
+        </form>
+    </div>
 
 </section>
 <?php
-if (isset($_POST['edit'])) {
+// if(isset($_POST['edit']))
+// {
 
-    $tab[] = $_POST;
+//     $tab[] = $_POST;
 
-    $categorie = $modelCategorie->findselected($tab);
+//     $categorie = $modelCategorie->findselected($tab);
 
-    $edited = $_POST['edite_categorie'];
+//     $edited = $_POST['edite_categorie'];
 
-    $modelCategorie->edit($categorie, $edited);
-} elseif (isset($_POST['delete'])) {
-    $tab[] = $_POST;
-    $categorie = $modelCategorie->findselected($tab);
-    $modelCategorie->delete($categorie);
-} elseif (isset($_POST['add'])) {
-    $newCategorie = $_POST['categorie'];
-    $modelCategorie->add($newCategorie);
-}
+//     $modelCategorie->edit($categorie,$edited);
+
+
+// }
+// elseif(isset($_POST['delete']))
+// {
+//     $tab[] = $_POST;
+//     $categorie = $modelCategorie->findselected($tab);
+//     $modelCategorie->delete($categorie);
+
+// }
+// elseif(isset($_POST['add']))
+// {
+//     $newCategorie = $_POST['categorie'];
+//     $modelCategorie->add($newCategorie);
+
+
+// }
+// elseif(isset($_POST['edit_user']))
+// {
+//     $tab[] = $_POST;
+//     $user = $modelCategorie->findselected($tab);
+//     $edit = $modeluser->edituser($user);
+//     if(!empty($edit) )
+//     {
+//         header('Location:profil.php');
+//     }
+
+// }
+// elseif(isset($_POST['creatuser']))
+// {
+//     header('Location:inscription.php');
+// }
 
 require_once('template/footer.php');
 ?>
