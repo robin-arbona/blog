@@ -26,17 +26,22 @@ require_once('template/header.php');
 ?>
 
 <form method="post">
-    <div class=" mt-5 mb-3 d-flex justify-content-center">
-        <label for="login" class="form-label">Login</label>
-        <input name="login" type="text" class="form-control w-25" id="login">
-    </div>
-    <div class=" mt-5 mb-3 d-flex justify-content-center">
-        <label for="password" class="form-label">Password</label>
-        <input name="password" type="password" class="form-control w-25" id="password">
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="mb-3 ml-3">
+                <label for="login" class="form-label">Login</label>
+                <input name="login" type="text" class="form-control" id="login>
+            </div>
+            <div class=" mb-3 ml-3">
+                <label for="Password" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" id="Password">
+            </div>
+        </div>
     </div>
     <div class="d-flex justify-content-center">
         <button name="sign-in" type="submit" class="btn btn-primary ml-5 mb-5">Sign in</button>
     </div>
+
 </form>
 <?php
 require 'template/footer.php';
