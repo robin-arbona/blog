@@ -25,21 +25,38 @@ class ArticlesEntity
         return strip_tags($extract);
     }
 
+    /**
+     * Return html path to the article
+     * @return string format: article.php?id=$id
+     */
     public function getLinkView()
     {
         return 'article.php?id=' . $this->id;
     }
 
+    /**
+     * Return a <a href></a> tag, formated with bootstrap classes, link with GET method to delete one article
+     * @return string fromat: <a class='btn btn-danger col-1 m-1' href='articles.php?id=$id&action=delete'>Delete</a>
+     */
     public function getBtnDelete()
     {
         return "<a class='btn btn-danger col-1 m-1' href='articles.php?id={$this->id}&action=delete'>Delete</a>";
     }
 
+
+    /**
+     * Return a <a href></a> tag, formated with bootstrap classes, link with GET method to edit one article
+     * @return string fromat: <a class='btn btn-warning col-1 m-1' href='creer-article.php?id=$id&action=edit'>Edit</a>
+     */
     public function getBtnEdit()
     {
         return "<a class='btn btn-warning col-1 m-1' href='creer-article.php?id={$this->id}&action=edit'>Edit</a>";
     }
 
+    /**
+     * Return a relativ filepath for a .jpg based on the article $id, 
+     * @return string fromat: '../public/image/article_mainpic_$id.jpg
+     */
     public function getImgPth()
     {
         return '../public/image/article_mainpic_' . $this->id . '.jpg';

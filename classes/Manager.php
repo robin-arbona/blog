@@ -10,6 +10,9 @@ class Manager
     protected $tableName;
     protected $entityName;
 
+    /**
+     * 
+     */
     public function __construct()
     {
         $this->db = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->login, $this->password);
