@@ -77,17 +77,23 @@ $categories = $categoriesManager->getAll();
 
                         <?php } ?>
                         <a class="dropdown-item" href="articles.php">All</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="creer-article.php">Nouvel article</a>
+                        <?php
+                        if (isset($_SESSION['id_droits']) && $_SESSION['id_droits'] != 1) {
+                        ?>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="creer-article.php">Nouvel article</a>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </li>
-                <?php if(isset($_SESSION['id_droits']) && $_SESSION['id_droits'] == 1337){ ?>
+                <?php if (isset($_SESSION['id_droits']) && $_SESSION['id_droits'] == 1337) { ?>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="admin.php">Admin</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
+                    </li>
 
-               <?php } ?>
+                <?php } ?>
             </ul>
         </nav>
     </header>

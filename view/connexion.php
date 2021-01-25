@@ -25,7 +25,7 @@ require_once('template/header.php');
 
 ?>
 
-<form class='form-connect' method="post">
+<form class='vh75' method="post">
     <div class="d-flex justify-content-center">
         <div class="row">
             <div class="mb-3 ml-3">
