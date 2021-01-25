@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Special;
+
 /**
  * Save picture uploaded from cree-article.php in /public/image/article_mainpic_$id.jpg
  * when a file has been uploaded and a $id provided in constructor

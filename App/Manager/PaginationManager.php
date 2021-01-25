@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Manager;
+
 use core\Manager;
 
 

@@ -1,6 +1,10 @@
 <?php
 
+namespace App\Manager;
+
 use core\Manager;
+use \Exception;
+use \PDO;
 
 class UserLogInManager extends Manager
 {

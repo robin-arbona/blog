@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 use core\PDOHandeler;
 
 class App

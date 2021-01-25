@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Manager;
+
 use core\Manager;
+use \PDO;
 
 class CommentairesManager extends Manager
 {

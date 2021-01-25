@@ -1,7 +1,9 @@
 <?php
 
-use core\Manager;
+namespace App\Manager;
 
+use core\Manager;
+use \PDO;
 
 class CategoriesManager extends Manager
 {
