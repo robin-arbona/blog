@@ -16,8 +16,9 @@ class PaginationManager extends Manager
     protected $limit;
     protected $categorie;
 
-    public function __construct(int $offset, int $limit = 5, $categorie = NULL)
+    public function __construct($db, int $offset, int $limit = 5, $categorie = NULL)
     {
+        parent::__construct($db);
         $this->offset = $offset;
         $this->limit = $limit;
         $this->categorie = $categorie;

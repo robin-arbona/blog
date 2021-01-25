@@ -3,15 +3,14 @@
 /**
  * Cette page contient les 3 derniers articles. En bas de la page, il doit y avoir un lien vers la page articles.
  */
-session_start();
 
-require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+use App\App;
+use App\Manager\ArticlesManager;
 
-$articlesManager = new ArticlesManager;
+require '../App/App.php';
+$App = new App();
+
+$articlesManager = new ArticlesManager($App->getDb());
 $articles = $articlesManager->getLast(3);
 
 require_once('template/header.php');

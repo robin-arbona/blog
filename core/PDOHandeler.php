@@ -16,19 +16,17 @@ class PDOHandeler
     protected $login;
     protected $password;
     protected $dbname;
-    protected $db;
+    public $db;
 
     public function __construct(array $conf)
     {
         foreach ($conf as $param => $value) {
             $method = 'set' . ucfirst($param);
             if (method_exists($this, $method)) {
-                $this->$method = $value;
+                $this->$method($value);
             }
         }
-        $db = $this->connect();
-
-        return $db;
+        $this->connect();
     }
 
     public function connect()
@@ -57,6 +55,6 @@ class PDOHandeler
 
     public function setDbname(string $dbname): void
     {
-        $this->$dbname = $dbname;
+        $this->dbname = $dbname;
     }
 }

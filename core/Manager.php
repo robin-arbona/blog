@@ -22,7 +22,7 @@ abstract class Manager
     /**
      * link to with db using PDO is expected
      */
-    public function __construct(PDO $db)
+    public function __construct($db)
     {
         $this->db = $db;
 
@@ -49,6 +49,7 @@ abstract class Manager
     {
         $SQL = "SELECT * FROM {$this->tableName};";
         $sth = $this->db->query($SQL);
+
         $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
 
         return $sth->fetchAll();
@@ -72,7 +73,10 @@ abstract class Manager
      */
     public function getTableName()
     {
-        return strtolower(str_replace('Manager', '', get_class($this)));
+        $tableName = strtolower(str_replace('Manager', '', get_class($this)));
+        $tableName = explode('\\', $tableName);
+        $tableName = end($tableName);
+        return $tableName;
     }
 
     /**
@@ -80,7 +84,7 @@ abstract class Manager
      */
     public function getEntityName()
     {
-        return ucfirst($this->tableName) . 'Entity';
+        return 'App\Entity\\' . ucfirst($this->tableName) . 'Entity';
     }
 
     /**

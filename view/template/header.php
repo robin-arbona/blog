@@ -12,8 +12,9 @@
  * 
  */
 
+use App\Manager\CategoriesManager;
 
-$categoriesManager = new CategoriesManager;
+$categoriesManager = new CategoriesManager($App->getDb());
 $categories = $categoriesManager->getAll();
 
 ?>
