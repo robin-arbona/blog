@@ -1,25 +1,30 @@
 <?php
-session_start();
+
 /**
  * Le formulaire doit contenir l’ensemble des champs présents dans la table
  * “utilisateurs” ainsi qu’une confirmation de mot de passe. Dès qu’un utilisateur 
  * remplit ce formulaire, les données sont insérées dans la base de
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
-require 'template/header.php';
-require '../classes/UserSignUpManager.php';
 
+use App\App;
+use App\Manager\UserSignUpManager;
 
-$user = new UserSignUpManager();
-if (isset($_POST['sign-up']))
+require '../App/App.php';
+
+$App = new App();
+
+$user = new UserSignUpManager($App->getDb());
+
+if (isset($_POST['sign-up'])) {
     try {
         $user->new_user();
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+}
+require_once('template/header.php');
+
 ?>
 <form method="post">
     <div class="d-flex justify-content-center mt-5">
@@ -52,16 +57,16 @@ if (isset($_POST['sign-up']))
             </div>
         </div>
     </div>
-    <?php if (isset($_SESSION['id_droits']) && ($_SESSION['id_droits'] == 1337)){ ?>
-    <div class="mb-3 ml-3 d-flex justify-content-center">
-        <select name="power">
-            <option>--utilisateur--modérateur--administrateur</option>
-            <option name="utilisateur">1</option>
-            <option name="moderateur">42</option>
-            <option name="admin">1337</option>
-        </select>
-    </div>
-    <?php }?>
+    <?php if (isset($_SESSION['id_droits']) && ($_SESSION['id_droits'] == 1337)) { ?>
+        <div class="mb-3 ml-3 d-flex justify-content-center">
+            <select name="power">
+                <option>--utilisateur--modérateur--administrateur</option>
+                <option name="utilisateur">1</option>
+                <option name="moderateur">42</option>
+                <option name="admin">1337</option>
+            </select>
+        </div>
+    <?php } ?>
     <div class="d-flex justify-content-center">
         <button name="sign-up" type="submit" class="btn btn-primary mb-5">Sign up</button>
     </div>

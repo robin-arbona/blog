@@ -7,51 +7,53 @@
  * de catégories, d’utilisateurs, droits...)
  */
 
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+use App\App;
+use App\Manager\CategoriesManager;
+
+require '../App/App.php';
+$App = new App();
 
 require_once('template/header.php');
 
-$modelCategorie = new CategoriesManager();
+$modelCategorie = new CategoriesManager($App->getDb());
 ?>
 <section>
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseEdit" aria-expanded="false" aria-controls="collapseEdit">
-        Edit Categorie
+            Edit Categorie
         </button>
     </p>
     <div class="collapse" id="collapseEdit">
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
-                    <?= $modelCategorie->findAll()?>
+                    <?= $modelCategorie->findAll() ?>
                 </select>
             </label>
             <label for="edite_categorie">
                 <input type="text" name="edite_categorie">
-            <label>
-        <button name="edit" type="submit" class="btn btn-primary">Edit</button>
+                <label>
+                    <button name="edit" type="submit" class="btn btn-primary">Edit</button>
         </form>
     </div>
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDelete" aria-expanded="false" aria-controls="collapseDelete">
-        Delete Categorie
+            Delete Categorie
         </button>
     </p>
     <div class="collaps" id="collapseDelete">
         <form method='post' action='admin.php' class="card card-body">
             <label for="categorie">Categorie :
                 <select class="form-control" id="categorie" name="categorie">
-                    <?= $modelCategorie->findAll()?>
+                    <?= $modelCategorie->findAll() ?>
                 </select>
             </label>
-        <button name="delete" type="submit" class="btn btn-primary">Delete</button>
+            <button name="delete" type="submit" class="btn btn-primary">Delete</button>
         </form>
     </div>
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAdd" aria-expanded="false" aria-controls="collapseAdd">
-        Add Categorie
+            Add Categorie
         </button>
     </p>
     <div class="collaps" id="collapseAdd">
@@ -59,38 +61,28 @@ $modelCategorie = new CategoriesManager();
             <label for="categorie">Categorie :
                 <input class='form-control' type="text" name="categorie">
             </label>
-        <button name="add" type="submit" class="btn btn-primary">Ajout</button>
+            <button name="add" type="submit" class="btn btn-primary">Ajout</button>
         </form>
     </div>
-  
+
 </section>
 <?php
-if(isset($_POST['edit']))
-{
-    
+if (isset($_POST['edit'])) {
+
     $tab[] = $_POST;
-    
+
     $categorie = $modelCategorie->findselected($tab);
 
     $edited = $_POST['edite_categorie'];
 
-    $modelCategorie->edit($categorie,$edited);
-
-    
-}
-elseif(isset($_POST['delete']))
-{
+    $modelCategorie->edit($categorie, $edited);
+} elseif (isset($_POST['delete'])) {
     $tab[] = $_POST;
     $categorie = $modelCategorie->findselected($tab);
     $modelCategorie->delete($categorie);
-
-}
-elseif(isset($_POST['add']))
-{
+} elseif (isset($_POST['add'])) {
     $newCategorie = $_POST['categorie'];
     $modelCategorie->add($newCategorie);
-
-
 }
 
 require_once('template/footer.php');

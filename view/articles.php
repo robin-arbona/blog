@@ -12,13 +12,14 @@
  * articles 11 à 15 ayant comme id_categorie 1).
  */
 
-session_start();
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/PaginationManager.php';
+use App\App;
+use App\Manager\ArticlesManager;
+use App\Manager\CategoriesManager;
+use App\Manager\PaginationManager;
+
+require '../App/App.php';
+
+$App = new App();
 
 $ARTICLES_PER_PAGE = 5;
 
@@ -36,16 +37,18 @@ if (isset($_GET['categorie'])) {
     $categorie = NULL;
 }
 
-$articlesManager = new ArticlesManager;
-$articles = $articlesManager->getArticlesList($offset, $ARTICLES_PER_PAGE, $categorie);
-$categoriesManager = new CategoriesManager;
-$categories = $categoriesManager->getAll();
-$paginationManager = new PaginationManager($offset, $ARTICLES_PER_PAGE, $categorie);
+$articlesManager = new ArticlesManager($App->getDb());
 
-
+// Form handeler for deletion position is important, between instanciacion and article list request
 if (isset($_GET['action']) && ($_GET['action'] == 'delete') && ($id_droits == 1337)) {
     $articlesManager->delete($_GET['id']);
 }
+$articles = $articlesManager->getArticlesList($offset, $ARTICLES_PER_PAGE, $categorie);
+$categoriesManager = new CategoriesManager($App->getDb());
+$categories = $categoriesManager->getAll();
+$paginationManager = new PaginationManager($App->getDb(), $offset, $ARTICLES_PER_PAGE, $categorie);
+
+
 
 require_once('template/header.php');
 ?>

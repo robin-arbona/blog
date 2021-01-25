@@ -19,7 +19,7 @@ class CommentairesManager extends Manager
                 WHERE id_article = $id_article 
                 ORDER BY commentaires.id DESC;";
         $sth = $this->db->query($SQL);
-        $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
+        $sth->setFetchMode(PDO::FETCH_CLASS, $this->EntityClassName);
 
         return $sth->fetchAll();
     }

@@ -26,7 +26,7 @@ class ArticlesManager extends Manager
         $sth->bindValue(':limit', $limit, PDO::PARAM_INT);
         $sth->bindValue(':offset', $offset, PDO::PARAM_INT);
 
-        $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
+        $sth->setFetchMode(PDO::FETCH_CLASS, $this->EntityClassName);
         if ($categorie !== NULL) {
             $sth->bindValue(':categorie', $categorie, PDO::PARAM_INT);
         }

@@ -1,35 +1,39 @@
 <?php
-session_start();
 
 /**
  * Cette page possède un formulaire permettant à l’utilisateur de modifier 
  * l’ensemble de ses informations.
  */
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
-require 'template/header.php';
-require '../classes/ModifyProfilManager.php';
+
+use App\App;
+use App\Manager\ModifyProfilManager;
+
+require '../App/App.php';
+
+$App = new App();
+
 if (!isset($_SESSION['id'])) {
     header('Location: connexion.php');
 }
-$modify = new ModifyProfilManager();
+$modify = new ModifyProfilManager($App->getDb());
 try {
     $modify->modify_user();
 } catch (Exception $e) {
     echo $e->getMessage();
 }
 
+require 'template/header.php';
+
 
 ?>
 
-<form method="post" ">
-<div class=" mb-3">
-    <label for="login" class="form-label">Login</label>
-    <input name="login" type="text" class="form-control" id="login" value="<?php echo $_SESSION['login'] ?>">
+<form method="post">
+    <div class=" mb-3">
+        <label for="login" class="form-label">Login</label>
+        <input name="login" type="text" class="form-control" id="login" value="<?php echo $_SESSION['login'] ?>">
     </div>
     <div class="mb-3">
-        <label for="InputPassword" class="form-label" >Password</label>
+        <label for="InputPassword" class="form-label">Password</label>
         <input name="password" type="password" class="form-control" id="InputPassword">
     </div>
     <div class="mb-3">

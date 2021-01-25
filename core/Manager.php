@@ -16,7 +16,7 @@ abstract class Manager
 {
     protected $db;
     protected $tableName;
-    protected $entityName;
+    protected $EntityClassName;
 
 
     /**
@@ -27,7 +27,7 @@ abstract class Manager
         $this->db = $db;
 
         $this->tableName = $this->getTableName();
-        $this->entityName = $this->getEntityName();
+        $this->EntityClassName = $this->getEntityClassName();
     }
 
     /** 
@@ -37,7 +37,7 @@ abstract class Manager
     {
         $SQL = "SELECT * FROM {$this->tableName} ORDER BY id DESC LIMIT " . (int) $number;
         $sth = $this->db->query($SQL);
-        $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
+        $sth->setFetchMode(PDO::FETCH_CLASS, $this->EntityClassName);
 
         return $sth->fetchAll();
     }
@@ -50,7 +50,7 @@ abstract class Manager
         $SQL = "SELECT * FROM {$this->tableName};";
         $sth = $this->db->query($SQL);
 
-        $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
+        $sth->setFetchMode(PDO::FETCH_CLASS, $this->EntityClassName);
 
         return $sth->fetchAll();
     }
@@ -63,7 +63,7 @@ abstract class Manager
     {
         $SQL = "SELECT * FROM {$this->tableName} WHERE id = " . (int) $id;
         $sth = $this->db->query($SQL);
-        $sth->setFetchMode(PDO::FETCH_CLASS, $this->entityName);
+        $sth->setFetchMode(PDO::FETCH_CLASS, $this->EntityClassName);
 
         return $sth->fetch();
     }
@@ -82,7 +82,7 @@ abstract class Manager
     /**
      * Return entity name classes, based on naming convention
      */
-    public function getEntityName()
+    public function getEntityClassName()
     {
         return 'App\Entity\\' . ucfirst($this->tableName) . 'Entity';
     }

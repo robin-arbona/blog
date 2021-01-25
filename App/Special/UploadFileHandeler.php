@@ -29,8 +29,7 @@ class UploadFileHandeler
 
     public function getFilePath($id_article)
     {
-        $dirRoot = str_replace('/classes', '', realpath(dirname(__FILE__)));
-        $filePath = $dirRoot . "/public/image/{$this->fileName}_$id_article.jpg";
+        $filePath = realpath(ROOT_PATH) . "/public/image/{$this->fileName}_$id_article.jpg";
         return $filePath;
     }
 

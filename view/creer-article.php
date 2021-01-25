@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 /** - Une page permettant de créer des articles (creer-article.php) :
  * Cette page possède un formulaire permettant aux modérateurs et
  * administrateurs de créer de nouveaux articles. Le formulaire contient donc
@@ -7,30 +7,33 @@ session_start();
  * en base de données et un bouton submit.
  */
 
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+use App\App;
+use App\Manager\ArticlesManager;
+use App\Manager\CategoriesManager;
+use App\Special\UploadFileHandeler;
+
+require '../App/App.php';
+
+$App = new App;
+
 require_once('template/header.php');
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/UploadFileHandeler.php';
+
 
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
-if ($id_droits === 1) {
+if ($id_droits == 1) {
     header('Location: connexion.php');
 }
 
 $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 
-$modelCategorie = new CategoriesManager();
-$modelArticle = new ArticlesManager();
-$articlesManager = new ArticlesManager;
+$modelCategorie = new CategoriesManager($App->getDb());
+$modelArticle = new ArticlesManager($App->getDb());
 
 $edition = false;
 
 if (isset($_GET['action']) && ($_GET['action'] == 'edit') && ($id_droits == 1337)) {
     $edition = true;
-    $article = $articlesManager->getById($_GET['id']);
+    $article = $modelArticle->getById($_GET['id']);
 }
 
 
@@ -47,7 +50,7 @@ if (isset($_POST['add'])) {
     $id_categorie = $modelCategorie->findId($_POST['categorie']);
     $id_article = (int) $_POST['id_article'];
 
-    $articlesManager->update($id_article, $_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
+    $modelArticle->update($id_article, $_POST['titre'], $_POST['article'], $id_utilisateur, $id_categorie);
 
     new UploadFileHandeler($id_article);
 

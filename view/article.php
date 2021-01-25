@@ -1,6 +1,5 @@
 <?php
 
-
 /** - Une page contenant un article et ses commentaires (article.php) :
  * Cette page permet de voir un article, l’ensemble des commentaires
  * associés et la possibilité d’en ajouter un nouveau. Il faut utiliser l’argument
@@ -8,14 +7,12 @@
  * ex : https://localhost/blog/article.php/?id=1
  * */
 
-session_start();
-require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/CommentairesManager.php';
-require '../classes/CommentairesEntity.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+use App\App;
+use App\Manager\ArticlesManager;
+use App\Manager\CommentairesManager;
+
+require '../App/App.php';
+$App = new App;
 
 
 if (isset($_GET['id'])) {
@@ -24,14 +21,14 @@ if (isset($_GET['id'])) {
     header('Location: index.php?404');
 }
 
-$articlesManager = new ArticlesManager;
+$articlesManager = new ArticlesManager($App->getDb());
 $article = $articlesManager->getById($id);
 
-$commentairesManager = new CommentairesManager;
+$commentairesManager = new CommentairesManager($App->getDb());
 
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
 
-if (isset($_POST['commentaire'])) {
+if (isset($_POST['commentaire']) && isset($_SESSION['id'])) {
     $commentairesManager->add($_POST['commentaire'], $id, $_SESSION['id']);
 } elseif (isset($_POST['commentaireEdit']) && ($id_droits == 42 || $id_droits == 1337)) {
     $commentairesManager->update($_POST['cmt_id'], $_POST['commentaireEdit']);
@@ -63,14 +60,19 @@ require_once('template/header.php');
 
     <h2>Commentaires</h2>
     <div class="row justify-content-center">
-        <form class="col-8 alert alert-secondary" method="POST">
-            <div class="form-group">
-                <label for='commentaire'><?= isset($_GET['action']) && $_GET['action'] == 'edit' ? "Edit comment from {$commentairesManager->getById($_GET['cmt_id'])->id_utilisateur} posted {$commentairesManager->getById($_GET['cmt_id'])->date}" : 'Post new comment'; ?></label>
-                <textarea name="commentaire<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'Edit' : ''; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= isset($_GET['action']) && $_GET['action'] == 'edit' ? $commentairesManager->getById($_GET['cmt_id'])->commentaire : ''; ?></textarea>
-                <input type="hidden" name="cmt_id" value=<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? $_GET['cmt_id'] : ''; ?>>
-            </div>
-            <input class="btn <?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'btn-warning' : 'btn-primary'; ?> btn-lg btn-block" type="submit" value="<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'Edit' : 'Poster'; ?>">
-        </form>
+        <?php
+        if (isset($_SESSION['id'])) { ?>
+            <form class="col-8 alert alert-secondary" method="POST">
+                <div class="form-group">
+                    <label for='commentaire'><?= isset($_GET['action']) && $_GET['action'] == 'edit' ? "Edit comment from {$commentairesManager->getById($_GET['cmt_id'])->id_utilisateur} posted {$commentairesManager->getById($_GET['cmt_id'])->date}" : 'Post new comment'; ?></label>
+                    <textarea name="commentaire<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'Edit' : ''; ?>" class="form-control" id="exampleFormControlTextarea1" rows="3"><?= isset($_GET['action']) && $_GET['action'] == 'edit' ? $commentairesManager->getById($_GET['cmt_id'])->commentaire : ''; ?></textarea>
+                    <input type="hidden" name="cmt_id" value=<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? $_GET['cmt_id'] : ''; ?>>
+                </div>
+                <input class="btn <?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'btn-warning' : 'btn-primary'; ?> btn-lg btn-block" type="submit" value="<?= isset($_GET['action']) && $_GET['action'] == 'edit' ? 'Edit' : 'Poster'; ?>">
+            </form>
+
+        <?php } ?>
+
         <?php
         foreach ($commentaires as $commentaire) { ?>
             <div class="col-8 alert alert-secondary" role="alert">

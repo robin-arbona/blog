@@ -8,6 +8,7 @@ use App\App;
 use App\Manager\ArticlesManager;
 
 require '../App/App.php';
+
 $App = new App();
 
 $articlesManager = new ArticlesManager($App->getDb());
