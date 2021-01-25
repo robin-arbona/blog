@@ -7,13 +7,16 @@ session_start();
  * en base de données et un bouton submit.
  */
 
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+
+// require '../classes/Manager.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
 require_once('template/header.php');
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/UploadFileHandeler.php';
+// require '../classes/ArticlesManager.php';
+// require '../classes/ArticlesEntity.php';
+// require '../classes/UploadFileHandeler.php';
 
 $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
 if ($id_droits === 1) {
@@ -21,7 +24,6 @@ if ($id_droits === 1) {
 }
 
 $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
-spl_autoload_register(   )
 $modelCategorie = new CategoriesManager();
 $modelArticle = new ArticlesManager();
 $articlesManager = new ArticlesManager;

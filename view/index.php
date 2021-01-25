@@ -5,11 +5,14 @@
  */
 session_start();
 
-require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+
+// require '../classes/Manager.php';
+// require '../classes/ArticlesManager.php';
+// require '../classes/ArticlesEntity.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
 
 $articlesManager = new ArticlesManager;
 $articles = $articlesManager->getLast(3);

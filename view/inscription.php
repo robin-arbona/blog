@@ -6,11 +6,12 @@ session_start();
  * remplit ce formulaire, les données sont insérées dans la base de
  * données et l’utilisateur est dirigé vers la page de connexion.
  */
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
-require 'template/header.php';
-require '../classes/UserSignUpManager.php';
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+// require '../classes/Manager.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
+// require '../classes/UserSignUpManager.php';
 
 
 $user = new UserSignUpManager();
@@ -20,6 +21,7 @@ if (isset($_POST['sign-up']))
     } catch (Exception $e) {
         echo $e->getMessage();
     }
+require 'template/header.php';
 ?>
 <form method="post">
     <div class="d-flex justify-content-center mt-5">

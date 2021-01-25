@@ -9,13 +9,16 @@
  * */
 
 session_start();
-require '../classes/Manager.php';
-require '../classes/ArticlesManager.php';
-require '../classes/ArticlesEntity.php';
-require '../classes/CommentairesManager.php';
-require '../classes/CommentairesEntity.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
+
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+// require '../classes/Manager.php';
+// require '../classes/ArticlesManager.php';
+// require '../classes/ArticlesEntity.php';
+// require '../classes/CommentairesManager.php';
+// require '../classes/CommentairesEntity.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
 
 
 if (isset($_GET['id'])) {

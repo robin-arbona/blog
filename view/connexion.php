@@ -6,19 +6,22 @@ session_start();
  * informations, alors l’utilisateur devient connecté et une (ou plusieurs)
  * variables de session sont créées.
  */
-require '../classes/Manager.php';
-require '../classes/CategoriesManager.php';
-require '../classes/CategoriesEntity.php';
-require 'template/header.php';
-require '../classes/UserLogInManager.php';
+
+require('../function/autoloader.php');
+spl_autoload_register('myautoload');
+// require '../classes/Manager.php';
+// require '../classes/CategoriesManager.php';
+// require '../classes/CategoriesEntity.php';
+// require '../classes/UserLogInManager.php';
 $user_connection = new UserLogInManager();
 try {
     $user_connection->connection();
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-?>
+    require 'template/header.php';
 
+?>
 <form method="post">
     <div class="d-flex justify-content-center">
         <div class="row">

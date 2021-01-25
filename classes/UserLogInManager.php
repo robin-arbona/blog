@@ -35,6 +35,7 @@ class UserLogInManager extends Manager
                 $_SESSION['login'] = $tab['login'];
                 $_SESSION['id'] = $tab['id'];
                 $_SESSION['id_droits'] = $tab['id_droits'];
+                $_SESSION['email'] = $tab['email']; //Ajout pour la page admin
 
                 header("Location: articles.php");
             }
