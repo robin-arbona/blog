@@ -8,6 +8,7 @@ ob_start();
  */
 
 use App\App;
+use App\Manager\Admin;
 use App\Manager\CategoriesManager;
 
 require '../App/App.php';
@@ -17,7 +18,7 @@ $modelCategorie = new CategoriesManager($App->getDb());
 
 require_once('template/header.php');
 
-$modelAdmin = new Admin;
+$modelAdmin = new Admin($App->getDb());
 $modelAdmin->form();
 ?>
 <section>
