@@ -9,8 +9,9 @@ class UserSignUpManager extends Manager
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = htmlspecialchars($_POST['email']);
         $id_droits = 1;
-
-
+        if(isset($_SESSION['id_droits']) == 1337){
+            $id_droits = $id_droits_new_user = $_POST['power'];
+        }
         $stmt = $this->db->prepare("INSERT INTO utilisateurs(login, password, email, id_droits) VALUES (:login,:password,:email,:id_droits)");
         $stmt->bindValue(':login', $login);
         $stmt->bindvalue(':password', $password);
@@ -54,7 +55,7 @@ class UserSignUpManager extends Manager
                     if(!empty($error)){
                         throw new Exception(implode(' ',$error));
                     }
-                    if ($password == $password2 && $email == $email2) {
+                    if ($password == $password2 && $email == $email2 && $id_droits = 1)  {
                         $this->insert_user();
                         header("Location: connexion.php");
                     }
