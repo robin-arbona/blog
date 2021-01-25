@@ -3,6 +3,9 @@
 class UserSignUpManager extends Manager
 {
 
+    /*
+     * Insert value from form onto db and add input if user is admin;
+     */
     public function insert_user()
     {
         $login = htmlspecialchars($_POST['login']);
