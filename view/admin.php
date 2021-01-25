@@ -15,11 +15,13 @@ require '../App/App.php';
 $App = new App();
 
 $modelCategorie = new CategoriesManager($App->getDb());
+$modelAdmin = new Admin($App->getDb());
+$id_droits = $modelAdmin->checkRight();
+
+$modelAdmin->form();
 
 require_once('template/header.php');
 
-$modelAdmin = new Admin($App->getDb());
-$modelAdmin->form();
 ?>
 <section>
     <p>

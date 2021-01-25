@@ -8,6 +8,7 @@
  */
 
 use App\App;
+use App\Manager\Admin;
 use App\Manager\ArticlesManager;
 use App\Manager\CategoriesManager;
 use App\Special\UploadFileHandeler;
@@ -15,14 +16,12 @@ use App\Special\UploadFileHandeler;
 require '../App/App.php';
 
 $App = new App;
+$Admin = new Admin($App->getDb());
 
 require_once('template/header.php');
 
 
-$id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
-if ($id_droits == 1) {
-    header('Location: connexion.php');
-}
+$id_droits = $Admin->checkRight();
 
 $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
 

@@ -30,10 +30,14 @@
             <a class="nav-link " href="creer-article.php">Create Article</a>
             <!--Activer si droit-->
          </li>
-         <li class="nav-item">
-            <a class="nav-link disabled" href="#">Admin</a>
-            <!--Activer si droit-->
-         </li>
+         <?php if (isset($_SESSION['id_droits']) && $_SESSION['id_droits'] == 1337) { ?>
+
+            <li class="nav-item">
+               <a class="nav-link" href="admin.php">Admin</a>
+            </li>
+
+         <?php } ?>
+
       </ul>
    </nav>
 </footer>

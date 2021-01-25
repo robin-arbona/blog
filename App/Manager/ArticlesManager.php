@@ -18,7 +18,7 @@ class ArticlesManager extends Manager
             $SQL .= ' WHERE categories.id = :categorie ';
         }
 
-        $SQL .= "ORDER BY id ASC LIMIT :limit 
+        $SQL .= "ORDER BY id DESC LIMIT :limit 
                  OFFSET :offset";
 
         $sth = $this->db->prepare($SQL);

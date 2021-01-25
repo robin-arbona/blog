@@ -79,4 +79,17 @@ class Admin extends CategoriesManager
             header('Location:inscription.php');
         }
     }
+
+    /**
+     * Check $_SESSION['id_droits']
+     * -> redirection if user not allowed
+     */
+    public function checkRight()
+    {
+        $id_droits = isset($_SESSION['id_droits']) ? $_SESSION['id_droits'] : 1;
+        if ($id_droits == 1) {
+            header('Location: connexion.php');
+        }
+        return $id_droits;
+    }
 }
