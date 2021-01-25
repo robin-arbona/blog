@@ -8,8 +8,7 @@ class UserSignUpManager extends Manager
         $login = htmlspecialchars($_POST['login']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $email = htmlspecialchars($_POST['email']);
-        $id_droits = '1';
-
+        $id_droits = 1;
 
 
         $stmt = $this->db->prepare("INSERT INTO utilisateurs(login, password, email, id_droits) VALUES (:login,:password,:email,:id_droits)");
@@ -18,7 +17,6 @@ class UserSignUpManager extends Manager
         $stmt->bindValue(':email', $email);
         $stmt->bindValue(':id_droits', $id_droits);
         $stmt->execute();
-        $stmt->fetch(PDO::FETCH_OBJ);
     }
 
 

@@ -24,7 +24,7 @@ if ($id_droits === 1) {
 }
 
 $id_utilisateur = isset($_SESSION['id']) ? $_SESSION['id'] : NULL;
-
+spl_autoload_register(   )
 $modelCategorie = new CategoriesManager();
 $modelArticle = new ArticlesManager();
 $articlesManager = new ArticlesManager;
