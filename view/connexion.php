@@ -12,7 +12,6 @@ spl_autoload_register('myautoload');
 // require '../classes/Manager.php';
 // require '../classes/CategoriesManager.php';
 // require '../classes/CategoriesEntity.php';
-require 'template/header.php';
 // require '../classes/UserLogInManager.php';
 $user_connection = new UserLogInManager();
 try {
@@ -20,8 +19,9 @@ try {
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-?>
+    require 'template/header.php';
 
+?>
 <form method="post">
     <div class="d-flex justify-content-center">
         <div class="row">

@@ -62,7 +62,7 @@ class CategoriesManager extends Manager
      * @return void
      */
 
-    public function delete( string $categorie) :void
+    public function delete( $categorie)
     {
         $SQL = ("DELETE FROM categories WHERE nom = :nom ");
         $stmt = $this->db->prepare($SQL);

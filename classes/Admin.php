@@ -40,6 +40,7 @@ class Admin extends CategoriesManager
             $_SESSION['id'] = $value['id'];
             $_SESSION['login'] = $value['login'];
             $_SESSION['email'] = $value['email'];
+            var_dump($_SESSION);
         }
         return $_SESSION;
         

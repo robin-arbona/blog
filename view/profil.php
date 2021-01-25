@@ -12,7 +12,6 @@ spl_autoload_register('myautoload');
 // require '../classes/Manager.php';
 // require '../classes/CategoriesManager.php';
 // require '../classes/CategoriesEntity.php';
-require 'template/header.php';
 // require '../classes/ModifyProfilManager.php';
 if (!isset($_SESSION['id'])) {
     header('Location: connexion.php');
@@ -24,7 +23,7 @@ try {
     echo $e->getMessage();
 }
 
-
+require 'template/header.php';
 
 ?>
 
