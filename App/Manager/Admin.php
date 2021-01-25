@@ -37,16 +37,12 @@ class Admin extends CategoriesManager
          * Esque ca change les droit de admin ?
          */
         $query->execute([$user]);
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($data as $key => $value) {
-            session_start();
-            $_SESSION['id'] = $value['id'];
-            $_SESSION['login'] = $value['login'];
-            $_SESSION['email'] = $value['email'];
-            var_dump($_SESSION);
-        }
-        return $_SESSION;
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
     }
+
+
 
     /**
      * Traite les formulaires de la page admin
@@ -74,9 +70,10 @@ class Admin extends CategoriesManager
         } elseif (isset($_POST['edit_user'])) {
             $tab[] = $_POST;
             $user = $this->findselected($tab);
-            $edit = $this->edituser($user);
-            if (!empty($edit)) {
-                header('Location:profil.php');
+            $userdata = $this->edituser($user);
+            if (!empty($userdata)) {
+                $id_utilisateur = $userdata['id'];
+                header("Location: profil.php?id_utilisateur=$id_utilisateur&action=edit");
             }
         } elseif (isset($_POST['creatuser'])) {
             header('Location:inscription.php');

@@ -25,15 +25,14 @@ require_once('template/header.php');
 
 ?>
 
-?>
 <form method="post">
     <div class="d-flex justify-content-center">
         <div class="row">
             <div class="mb-3 ml-3">
                 <label for="login" class="form-label">Login</label>
-                <input name="login" type="text" class="form-control" id="login>
+                <input name="login" type="text" class="form-control" id="login">
             </div>
-            <div class=" mb-3 ml-3">
+            <div class="mb-3 ml-3">
                 <label for="Password" class="form-label">Password</label>
                 <input name="password" type="password" class="form-control" id="Password">
             </div>
