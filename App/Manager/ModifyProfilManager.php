@@ -52,7 +52,7 @@ class ModifyProfilManager extends Manager
                 $stmt->execute();
 
                 if ($stmt->rowCount() == 1) {
-                    if (empty($password) && empty($password2)) {
+                    if (empty($_POST['password']) && empty($_POST['password2'])) {
                         $query = $this->db->prepare("UPDATE utilisateurs SET login = :login, email = :email, id_droits = :id_droits WHERE id= :id");
                         $query->bindValue(':login', $login);
                         $query->bindValue(':email', $email);
